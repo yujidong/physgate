@@ -1,0 +1,2741 @@
+{
+  "reanalysisVersion": "2.0.0",
+  "generatedAt": "2026-10-28T11:34:59.524Z",
+  "queueVersion": "gm-admitted-2026-10-24-v1",
+  "gateReport": "tests/experiment-results/outcome-gm/2026-10-24T18-05-32-388Z/gm-gate-report.json",
+  "legacyRecords": "tests/experiment-results/outcome-gm/five-arm-matrix/records-*.json",
+  "seeds": [
+    11,
+    22,
+    33
+  ],
+  "armsIncluded": [
+    "no-op",
+    "perfect-info-greedy",
+    "full-rules",
+    "distributed-llm",
+    "centralized-llm"
+  ],
+  "cohort": {
+    "positive": 67,
+    "negative": 19,
+    "total": 86,
+    "expected": {
+      "positive": 67,
+      "negative": 19,
+      "total": 86
+    },
+    "excludedEventIds": [
+      "evt-factory-3",
+      "evt-sc-7",
+      "evt-apt-42"
+    ]
+  },
+  "legacyInputCohort": {
+    "positive": 79,
+    "negative": 22,
+    "total": 101
+  },
+  "armSummary": [
+    {
+      "armId": "no-op",
+      "positive": {
+        "total": 201,
+        "passRate": 0,
+        "train": {
+          "events": 45,
+          "passRate": 0
+        },
+        "templateHoldout": {
+          "events": 16,
+          "passRate": 0
+        },
+        "scenarioTransfer": {
+          "events": 6,
+          "passRate": 0
+        },
+        "failureModes": {
+          "never-entered": 132,
+          "late": 69
+        }
+      },
+      "negative": {
+        "total": 57,
+        "passRate": 1
+      },
+      "passK": {
+        "passK": 0,
+        "eventsConsidered": 67
+      },
+      "costTotal": {
+        "tokenIn": 0,
+        "tokenOut": 0,
+        "llmCalls": 0,
+        "wallClockMs": 0
+      },
+      "costPerEvent": {
+        "tokenIn": 0,
+        "tokenOut": 0,
+        "llmCalls": 0,
+        "wallClockMs": 0
+      }
+    },
+    {
+      "armId": "perfect-info-greedy",
+      "positive": {
+        "total": 201,
+        "passRate": 1,
+        "train": {
+          "events": 45,
+          "passRate": 1
+        },
+        "templateHoldout": {
+          "events": 16,
+          "passRate": 1
+        },
+        "scenarioTransfer": {
+          "events": 6,
+          "passRate": 1
+        },
+        "failureModes": {
+          "pass": 201
+        }
+      },
+      "negative": {
+        "total": 57,
+        "passRate": 1
+      },
+      "passK": {
+        "passK": 1,
+        "eventsConsidered": 67
+      },
+      "costTotal": {
+        "tokenIn": 0,
+        "tokenOut": 0,
+        "llmCalls": 0,
+        "wallClockMs": 0
+      },
+      "costPerEvent": {
+        "tokenIn": 0,
+        "tokenOut": 0,
+        "llmCalls": 0,
+        "wallClockMs": 0
+      }
+    },
+    {
+      "armId": "full-rules",
+      "positive": {
+        "total": 201,
+        "passRate": 0,
+        "train": {
+          "events": 45,
+          "passRate": 0
+        },
+        "templateHoldout": {
+          "events": 16,
+          "passRate": 0
+        },
+        "scenarioTransfer": {
+          "events": 6,
+          "passRate": 0
+        },
+        "failureModes": {
+          "transient": 60,
+          "never-entered": 72,
+          "late": 69
+        }
+      },
+      "negative": {
+        "total": 57,
+        "passRate": 0.631578947368421
+      },
+      "passK": {
+        "passK": 0,
+        "eventsConsidered": 67
+      },
+      "costTotal": {
+        "tokenIn": 0,
+        "tokenOut": 0,
+        "llmCalls": 0,
+        "wallClockMs": 47717
+      },
+      "costPerEvent": {
+        "tokenIn": 0,
+        "tokenOut": 0,
+        "llmCalls": 0,
+        "wallClockMs": 554.8488372093024
+      }
+    },
+    {
+      "armId": "distributed-llm",
+      "positive": {
+        "total": 201,
+        "passRate": 0,
+        "train": {
+          "events": 45,
+          "passRate": 0
+        },
+        "templateHoldout": {
+          "events": 16,
+          "passRate": 0
+        },
+        "scenarioTransfer": {
+          "events": 6,
+          "passRate": 0
+        },
+        "failureModes": {
+          "transient": 60,
+          "never-entered": 72,
+          "late": 69
+        }
+      },
+      "negative": {
+        "total": 57,
+        "passRate": 0.631578947368421
+      },
+      "passK": {
+        "passK": 0,
+        "eventsConsidered": 67
+      },
+      "costTotal": {
+        "tokenIn": 915951,
+        "tokenOut": 139938,
+        "llmCalls": 376,
+        "wallClockMs": 0
+      },
+      "costPerEvent": {
+        "tokenIn": 10650.593023255815,
+        "tokenOut": 1627.1860465116279,
+        "llmCalls": 4.372093023255814,
+        "wallClockMs": 0
+      }
+    },
+    {
+      "armId": "centralized-llm",
+      "positive": {
+        "total": 201,
+        "passRate": 0,
+        "train": {
+          "events": 45,
+          "passRate": 0
+        },
+        "templateHoldout": {
+          "events": 16,
+          "passRate": 0
+        },
+        "scenarioTransfer": {
+          "events": 6,
+          "passRate": 0
+        },
+        "failureModes": {
+          "transient": 72,
+          "never-entered": 60,
+          "late": 69
+        }
+      },
+      "negative": {
+        "total": 57,
+        "passRate": 0.5789473684210527
+      },
+      "passK": {
+        "passK": 0,
+        "eventsConsidered": 67
+      },
+      "costTotal": {
+        "tokenIn": 56721,
+        "tokenOut": 6827,
+        "llmCalls": 21,
+        "wallClockMs": 0
+      },
+      "costPerEvent": {
+        "tokenIn": 659.546511627907,
+        "tokenOut": 79.38372093023256,
+        "llmCalls": 0.2441860465116279,
+        "wallClockMs": 0
+      }
+    }
+  ],
+  "contrasts": [
+    {
+      "arm": "perfect-info-greedy",
+      "vsNoOp": {
+        "armA": "perfect-info-greedy",
+        "armB": "no-op",
+        "perEventDiff": [
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-1",
+            "diff": 1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-13",
+            "diff": 1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-17",
+            "diff": 1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-19",
+            "diff": 1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-2",
+            "diff": 1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-20",
+            "diff": 1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-22",
+            "diff": 1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-23",
+            "diff": 1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-25",
+            "diff": 1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-27",
+            "diff": 1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-28",
+            "diff": 1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-3",
+            "diff": 1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-30",
+            "diff": 1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-39",
+            "diff": 1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-40",
+            "diff": 1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-45",
+            "diff": 1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-6",
+            "diff": 1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-7",
+            "diff": 1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-9",
+            "diff": 1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-1",
+            "diff": 1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-11",
+            "diff": 1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-12",
+            "diff": 1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-13",
+            "diff": 1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-16",
+            "diff": 1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-2",
+            "diff": 1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-21",
+            "diff": 1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-22",
+            "diff": 1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-3",
+            "diff": 1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-4",
+            "diff": 1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-5",
+            "diff": 1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-8",
+            "diff": 1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-9",
+            "diff": 1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-emergency-1",
+            "diff": 1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-humidity-1",
+            "diff": 1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-1",
+            "diff": 1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-10",
+            "diff": 1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-11",
+            "diff": 1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-16",
+            "diff": 1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-17",
+            "diff": 1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-20",
+            "diff": 1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-21",
+            "diff": 1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-5",
+            "diff": 1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-emergency-1",
+            "diff": 1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-humidity-1",
+            "diff": 1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-1",
+            "diff": 1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-13",
+            "diff": 1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-15",
+            "diff": 1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-16",
+            "diff": 1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-20",
+            "diff": 1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-22",
+            "diff": 1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-3",
+            "diff": 1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-4",
+            "diff": 1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-5",
+            "diff": 1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-8",
+            "diff": 1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-9",
+            "diff": 1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-emergency-1",
+            "diff": 1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-humidity-1",
+            "diff": 1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-1",
+            "diff": 1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-15",
+            "diff": 1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-6",
+            "diff": 1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-8",
+            "diff": 1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-emergency-1",
+            "diff": 1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-humidity-1",
+            "diff": 1
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-1",
+            "diff": 1
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-4",
+            "diff": 1
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-5",
+            "diff": 1
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-7",
+            "diff": 1
+          }
+        ],
+        "ci": {
+          "estimate": 1,
+          "lower": 1,
+          "upper": 1,
+          "resamples": 10000,
+          "seed": 20261024
+        },
+        "signTestP": 1.3552527156068805e-20
+      }
+    },
+    {
+      "arm": "full-rules",
+      "vsNoOp": {
+        "armA": "full-rules",
+        "armB": "no-op",
+        "perEventDiff": [
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-13",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-17",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-19",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-2",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-20",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-22",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-23",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-25",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-27",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-28",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-3",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-30",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-39",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-40",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-45",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-6",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-7",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-9",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-11",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-12",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-13",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-16",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-2",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-21",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-22",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-3",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-4",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-5",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-8",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-9",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-emergency-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-humidity-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-10",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-11",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-16",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-17",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-20",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-21",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-5",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-emergency-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-humidity-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-13",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-15",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-16",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-20",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-22",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-3",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-4",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-5",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-8",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-9",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-emergency-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-humidity-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-15",
+            "diff": 0
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-6",
+            "diff": 0
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-8",
+            "diff": 0
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-emergency-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-humidity-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-4",
+            "diff": 0
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-5",
+            "diff": 0
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-7",
+            "diff": 0
+          }
+        ],
+        "ci": {
+          "estimate": 0,
+          "lower": 0,
+          "upper": 0,
+          "resamples": 10000,
+          "seed": 20261024
+        },
+        "signTestP": 1
+      },
+      "vsGreedy": {
+        "armA": "full-rules",
+        "armB": "perfect-info-greedy",
+        "perEventDiff": [
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-13",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-17",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-19",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-2",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-20",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-22",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-23",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-25",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-27",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-28",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-3",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-30",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-39",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-40",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-45",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-6",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-7",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-9",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-11",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-12",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-13",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-16",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-2",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-21",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-22",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-3",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-4",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-5",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-8",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-9",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-emergency-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-humidity-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-10",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-11",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-16",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-17",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-20",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-21",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-5",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-emergency-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-humidity-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-13",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-15",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-16",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-20",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-22",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-3",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-4",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-5",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-8",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-9",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-emergency-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-humidity-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-15",
+            "diff": -1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-6",
+            "diff": -1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-8",
+            "diff": -1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-emergency-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-humidity-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-4",
+            "diff": -1
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-5",
+            "diff": -1
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-7",
+            "diff": -1
+          }
+        ],
+        "ci": {
+          "estimate": -1,
+          "lower": -1,
+          "upper": -1,
+          "resamples": 10000,
+          "seed": 20261024
+        },
+        "signTestP": 1.3552527156068805e-20
+      }
+    },
+    {
+      "arm": "distributed-llm",
+      "vsNoOp": {
+        "armA": "distributed-llm",
+        "armB": "no-op",
+        "perEventDiff": [
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-13",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-17",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-19",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-2",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-20",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-22",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-23",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-25",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-27",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-28",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-3",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-30",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-39",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-40",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-45",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-6",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-7",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-9",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-11",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-12",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-13",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-16",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-2",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-21",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-22",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-3",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-4",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-5",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-8",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-9",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-emergency-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-humidity-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-10",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-11",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-16",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-17",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-20",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-21",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-5",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-emergency-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-humidity-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-13",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-15",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-16",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-20",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-22",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-3",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-4",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-5",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-8",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-9",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-emergency-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-humidity-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-15",
+            "diff": 0
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-6",
+            "diff": 0
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-8",
+            "diff": 0
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-emergency-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-humidity-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-4",
+            "diff": 0
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-5",
+            "diff": 0
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-7",
+            "diff": 0
+          }
+        ],
+        "ci": {
+          "estimate": 0,
+          "lower": 0,
+          "upper": 0,
+          "resamples": 10000,
+          "seed": 20261024
+        },
+        "signTestP": 1
+      },
+      "vsGreedy": {
+        "armA": "distributed-llm",
+        "armB": "perfect-info-greedy",
+        "perEventDiff": [
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-13",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-17",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-19",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-2",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-20",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-22",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-23",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-25",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-27",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-28",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-3",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-30",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-39",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-40",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-45",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-6",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-7",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-9",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-11",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-12",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-13",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-16",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-2",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-21",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-22",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-3",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-4",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-5",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-8",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-9",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-emergency-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-humidity-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-10",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-11",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-16",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-17",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-20",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-21",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-5",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-emergency-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-humidity-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-13",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-15",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-16",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-20",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-22",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-3",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-4",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-5",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-8",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-9",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-emergency-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-humidity-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-15",
+            "diff": -1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-6",
+            "diff": -1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-8",
+            "diff": -1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-emergency-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-humidity-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-4",
+            "diff": -1
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-5",
+            "diff": -1
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-7",
+            "diff": -1
+          }
+        ],
+        "ci": {
+          "estimate": -1,
+          "lower": -1,
+          "upper": -1,
+          "resamples": 10000,
+          "seed": 20261024
+        },
+        "signTestP": 1.3552527156068805e-20
+      }
+    },
+    {
+      "arm": "centralized-llm",
+      "vsNoOp": {
+        "armA": "centralized-llm",
+        "armB": "no-op",
+        "perEventDiff": [
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-13",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-17",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-19",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-2",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-20",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-22",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-23",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-25",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-27",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-28",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-3",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-30",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-39",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-40",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-45",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-6",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-7",
+            "diff": 0
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-9",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-11",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-12",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-13",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-16",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-2",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-21",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-22",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-3",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-4",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-5",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-8",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-9",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-emergency-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-humidity-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-10",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-11",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-16",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-17",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-20",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-21",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-5",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-emergency-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-humidity-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-13",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-15",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-16",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-20",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-22",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-3",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-4",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-5",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-8",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-9",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-emergency-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-humidity-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-15",
+            "diff": 0
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-6",
+            "diff": 0
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-8",
+            "diff": 0
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-emergency-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-humidity-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-1",
+            "diff": 0
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-4",
+            "diff": 0
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-5",
+            "diff": 0
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-7",
+            "diff": 0
+          }
+        ],
+        "ci": {
+          "estimate": 0,
+          "lower": 0,
+          "upper": 0,
+          "resamples": 10000,
+          "seed": 20261024
+        },
+        "signTestP": 1
+      },
+      "vsGreedy": {
+        "armA": "centralized-llm",
+        "armB": "perfect-info-greedy",
+        "perEventDiff": [
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-13",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-17",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-19",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-2",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-20",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-22",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-23",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-25",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-27",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-28",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-3",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-30",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-39",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-40",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-45",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-6",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-7",
+            "diff": -1
+          },
+          {
+            "scenarioId": "apartment",
+            "eventId": "evt-apt-9",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-11",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-12",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-13",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-16",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-2",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-21",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-22",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-3",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-4",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-5",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-8",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-9",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-emergency-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "campus",
+            "eventId": "evt-campus-humidity-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-10",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-11",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-16",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-17",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-20",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-21",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-5",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-emergency-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "factory",
+            "eventId": "evt-factory-humidity-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-13",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-15",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-16",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-20",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-22",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-3",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-4",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-5",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-8",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-9",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-emergency-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "hospital",
+            "eventId": "evt-hosp-humidity-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-15",
+            "diff": -1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-6",
+            "diff": -1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-8",
+            "diff": -1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-emergency-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "smart-city",
+            "eventId": "evt-sc-humidity-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-1",
+            "diff": -1
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-4",
+            "diff": -1
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-5",
+            "diff": -1
+          },
+          {
+            "scenarioId": "single-room",
+            "eventId": "evt-sr-7",
+            "diff": -1
+          }
+        ],
+        "ci": {
+          "estimate": -1,
+          "lower": -1,
+          "upper": -1,
+          "resamples": 10000,
+          "seed": 20261024
+        },
+        "signTestP": 1.3552527156068805e-20
+      }
+    }
+  ],
+  "holmVsNoOp": [
+    {
+      "p": 1.3552527156068805e-20,
+      "adjusted": 5.421010862427522e-20,
+      "reject": true,
+      "rank": 0
+    },
+    {
+      "p": 1,
+      "adjusted": 1,
+      "reject": false,
+      "rank": 1
+    },
+    {
+      "p": 1,
+      "adjusted": 1,
+      "reject": false,
+      "rank": 2
+    },
+    {
+      "p": 1,
+      "adjusted": 1,
+      "reject": false,
+      "rank": 3
+    }
+  ]
+}

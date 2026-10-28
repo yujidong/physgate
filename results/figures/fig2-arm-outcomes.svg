@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="470" viewBox="0 0 940 470" font-family="Helvetica,Arial,sans-serif">
+<text x="30" y="34" font-size="16" fill="#222222" text-anchor="start" font-weight="bold">Physical success vs cost — 5 arms × frozen queue (67 positive + 19 negative events × 3 paired seeds)</text>
+<text x="30" y="62" font-size="13" fill="#222222" text-anchor="start" font-weight="bold">A. Physical success rate</text>
+<rect x="60" y="70" width="420" height="280" fill="#FAFAFA" />
+<line x1="60" y1="350" x2="480" y2="350" stroke="#E0E0E0" stroke-width="1"/>
+<text x="52" y="354" font-size="10" fill="#888888" text-anchor="end" font-weight="normal">0.00</text>
+<line x1="60" y1="280" x2="480" y2="280" stroke="#E0E0E0" stroke-width="1"/>
+<text x="52" y="284" font-size="10" fill="#888888" text-anchor="end" font-weight="normal">0.25</text>
+<line x1="60" y1="210" x2="480" y2="210" stroke="#E0E0E0" stroke-width="1"/>
+<text x="52" y="214" font-size="10" fill="#888888" text-anchor="end" font-weight="normal">0.50</text>
+<line x1="60" y1="140" x2="480" y2="140" stroke="#E0E0E0" stroke-width="1"/>
+<text x="52" y="144" font-size="10" fill="#888888" text-anchor="end" font-weight="normal">0.75</text>
+<line x1="60" y1="70" x2="480" y2="70" stroke="#E0E0E0" stroke-width="1"/>
+<text x="52" y="74" font-size="10" fill="#888888" text-anchor="end" font-weight="normal">1.00</text>
+<rect x="70" y="350" width="30" height="0" fill="#0072B2" />
+<rect x="104" y="70" width="30" height="280" fill="#56B4E9" />
+<text x="102" y="366" font-size="10.5" fill="#222222" text-anchor="middle" font-weight="normal">no-op</text>
+<text x="102" y="380" font-size="9.5" fill="#888888" text-anchor="middle" font-weight="normal">pass³=0.00</text>
+<rect x="154" y="70" width="30" height="280" fill="#0072B2" />
+<rect x="188" y="70" width="30" height="280" fill="#56B4E9" />
+<text x="186" y="366" font-size="10.5" fill="#222222" text-anchor="middle" font-weight="normal">perfect-info-greedy</text>
+<text x="186" y="380" font-size="9.5" fill="#888888" text-anchor="middle" font-weight="normal">pass³=1.00</text>
+<rect x="238" y="350" width="30" height="0" fill="#0072B2" />
+<rect x="272" y="173.1578947368421" width="30" height="176.8421052631579" fill="#56B4E9" />
+<text x="270" y="366" font-size="10.5" fill="#222222" text-anchor="middle" font-weight="normal">full-rules</text>
+<text x="270" y="380" font-size="9.5" fill="#888888" text-anchor="middle" font-weight="normal">pass³=0.00</text>
+<rect x="322" y="350" width="30" height="0" fill="#0072B2" />
+<rect x="356" y="173.1578947368421" width="30" height="176.8421052631579" fill="#56B4E9" />
+<text x="354" y="366" font-size="10.5" fill="#222222" text-anchor="middle" font-weight="normal">distributed</text>
+<text x="354" y="378" font-size="10.5" fill="#222222" text-anchor="middle" font-weight="normal">llm</text>
+<text x="354" y="392" font-size="9.5" fill="#888888" text-anchor="middle" font-weight="normal">pass³=0.00</text>
+<rect x="406" y="350" width="30" height="0" fill="#0072B2" />
+<rect x="440" y="187.89473684210526" width="30" height="162.10526315789474" fill="#56B4E9" />
+<text x="438" y="366" font-size="10.5" fill="#222222" text-anchor="middle" font-weight="normal">centralized</text>
+<text x="438" y="378" font-size="10.5" fill="#222222" text-anchor="middle" font-weight="normal">llm</text>
+<text x="438" y="392" font-size="9.5" fill="#888888" text-anchor="middle" font-weight="normal">pass³=0.00</text>
+<rect x="330" y="78" width="12" height="12" fill="#0072B2" />
+<text x="348" y="88" font-size="11" fill="#222222" text-anchor="start" font-weight="normal">positive events</text>
+<rect x="330" y="96" width="12" height="12" fill="#56B4E9" />
+<text x="348" y="106" font-size="11" fill="#222222" text-anchor="start" font-weight="normal">negative events</text>
+<text x="60" y="338" font-size="10" fill="#222222" text-anchor="start" font-weight="normal">restraint (no unpermitted action): no-op 1.00 · perfect-info-greedy 0.95 · full-rules 0.68 · distributed-llm 0.63 · centralized-llm 0.58</text>
+<text x="510" y="62" font-size="13" fill="#222222" text-anchor="start" font-weight="bold">B. Live cost per event (tokens, log scale)</text>
+<rect x="540" y="80" width="0" height="14" fill="#D55E00" />
+<rect x="540" y="80" width="0" height="14" fill="#CC79A7" />
+<text x="818" y="91" font-size="10.5" fill="#222222" text-anchor="start" font-weight="normal">— (no LLM)</text>
+<text x="532" y="91" font-size="11" fill="#222222" text-anchor="end" font-weight="normal">no-op</text>
+<rect x="540" y="120" width="0" height="14" fill="#D55E00" />
+<rect x="540" y="120" width="0" height="14" fill="#CC79A7" />
+<text x="818" y="131" font-size="10.5" fill="#222222" text-anchor="start" font-weight="normal">— (no LLM)</text>
+<text x="532" y="131" font-size="11" fill="#222222" text-anchor="end" font-weight="normal">perfect-info-greedy</text>
+<rect x="540" y="160" width="0" height="14" fill="#D55E00" />
+<rect x="540" y="160" width="0" height="14" fill="#CC79A7" />
+<text x="818" y="171" font-size="10.5" fill="#222222" text-anchor="start" font-weight="normal">— (no LLM)</text>
+<text x="532" y="171" font-size="11" fill="#222222" text-anchor="end" font-weight="normal">full-rules</text>
+<rect x="540" y="200" width="217.94259392935612" height="14" fill="#D55E00" />
+<rect x="757.9425939293561" y="200" width="173.88201869188995" height="14" fill="#CC79A7" />
+<text x="818" y="211" font-size="10.5" fill="#222222" text-anchor="start" font-weight="normal">10651+1627 · 4.4 calls</text>
+<text x="532" y="211" font-size="11" fill="#222222" text-anchor="end" font-weight="normal">distributed-llm</text>
+<rect x="540" y="240" width="152.70366236974488" height="14" fill="#D55E00" />
+<rect x="692.7036623697448" y="240" width="103.04990766198146" height="14" fill="#CC79A7" />
+<text x="818" y="251" font-size="10.5" fill="#222222" text-anchor="start" font-weight="normal">660+79 · 0.2 calls</text>
+<text x="532" y="251" font-size="11" fill="#222222" text-anchor="end" font-weight="normal">centralized-llm</text>
+<line x1="540" y1="284" x2="540" y2="290" stroke="#999"/>
+<text x="540" y="304" font-size="10" fill="#888888" text-anchor="middle" font-weight="normal">1e0</text>
+<line x1="594" y1="284" x2="594" y2="290" stroke="#999"/>
+<text x="594" y="304" font-size="10" fill="#888888" text-anchor="middle" font-weight="normal">1e1</text>
+<line x1="648" y1="284" x2="648" y2="290" stroke="#999"/>
+<text x="648" y="304" font-size="10" fill="#888888" text-anchor="middle" font-weight="normal">1e2</text>
+<line x1="702" y1="284" x2="702" y2="290" stroke="#999"/>
+<text x="702" y="304" font-size="10" fill="#888888" text-anchor="middle" font-weight="normal">1e3</text>
+<line x1="756" y1="284" x2="756" y2="290" stroke="#999"/>
+<text x="756" y="304" font-size="10" fill="#888888" text-anchor="middle" font-weight="normal">1e4</text>
+<line x1="810" y1="284" x2="810" y2="290" stroke="#999"/>
+<text x="810" y="304" font-size="10" fill="#888888" text-anchor="middle" font-weight="normal">1e5</text>
+<rect x="540" y="314" width="12" height="12" fill="#D55E00" />
+<text x="558" y="324" font-size="11" fill="#222222" text-anchor="start" font-weight="normal">prompt tokens</text>
+<rect x="650" y="314" width="12" height="12" fill="#CC79A7" />
+<text x="668" y="324" font-size="11" fill="#222222" text-anchor="start" font-weight="normal">completion tokens</text>
+<text x="30" y="456" font-size="10" fill="#888888" text-anchor="start" font-weight="normal">source: five-arm-reanalysis-v2/five-arm-summary.json · closed-loop arms auto-include when their matrix lands</text>
+</svg>

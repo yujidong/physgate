@@ -1,0 +1,173 @@
+{
+  "generatedAt": "2026-10-28T11:34:59.602Z",
+  "sources": {
+    "v2": "C:\\Users\\yujid\\projects\\embodied-agent-framework\\packages\\core\\tests\\experiment-results\\outcome-gm\\five-arm-reanalysis-v2\\five-arm-summary.json",
+    "legacy": "C:\\Users\\yujid\\projects\\embodied-agent-framework\\packages\\core\\tests\\experiment-results\\outcome-gm\\legacy-noop-audit\\legacy-noop-audit.json",
+    "closedLoopOptional": "C:\\Users\\yujid\\projects\\embodied-agent-framework\\packages\\core\\tests\\experiment-results\\outcome-gm\\closed-loop-matrix-v1\\arm-summary.json"
+  },
+  "audit": {
+    "total": 177,
+    "physical": 101,
+    "naturalRecovery": 4,
+    "unscorableNonPhysical": 28,
+    "unscorableNoEnvelope": 44,
+    "admittedPositive": 67,
+    "admittedNegative": 19,
+    "edgeExcluded": [
+      {
+        "eventId": "evt-factory-3",
+        "reason": "unreachable: extreme injection exceeds the pre-registered deadline"
+      },
+      {
+        "eventId": "evt-sc-7",
+        "reason": "unreachable: extreme injection exceeds the pre-registered deadline"
+      },
+      {
+        "eventId": "evt-apt-42",
+        "reason": "non-discriminative: mild injection self-heals inside the deadline"
+      }
+    ],
+    "perScenario": [
+      {
+        "scenarioId": "single-room",
+        "total": 10,
+        "physical": 7
+      },
+      {
+        "scenarioId": "apartment",
+        "total": 51,
+        "physical": 28
+      },
+      {
+        "scenarioId": "campus",
+        "total": 29,
+        "physical": 20
+      },
+      {
+        "scenarioId": "factory",
+        "total": 26,
+        "physical": 17
+      },
+      {
+        "scenarioId": "hospital",
+        "total": 29,
+        "physical": 18
+      },
+      {
+        "scenarioId": "smart-city",
+        "total": 32,
+        "physical": 11
+      }
+    ]
+  },
+  "legacy": {
+    "totalEvents": 177,
+    "totalNoOpPasses": 101,
+    "actionRequired": {
+      "passes": 67,
+      "total": 143
+    },
+    "negative": {
+      "passes": 34,
+      "total": 34
+    },
+    "branches": {
+      "shouldChange": 9,
+      "targetValue": 32,
+      "non-physical": 26
+    }
+  },
+  "modernNoOpAdmittedPositivePasses": 0,
+  "arms": [
+    {
+      "armId": "no-op",
+      "passPositive": 0,
+      "passNegative": 1,
+      "passK": 0,
+      "split": {
+        "train": 0,
+        "templateHoldout": 0,
+        "scenarioTransfer": 0
+      },
+      "tokenIn": 0,
+      "tokenOut": 0,
+      "llmCallsPerEvent": 0,
+      "source": "five-arm-reanalysis-v2",
+      "restraintRate": 1,
+      "unpermittedCount": 0,
+      "negativeRuns": 66
+    },
+    {
+      "armId": "perfect-info-greedy",
+      "passPositive": 1,
+      "passNegative": 1,
+      "passK": 1,
+      "split": {
+        "train": 1,
+        "templateHoldout": 1,
+        "scenarioTransfer": 1
+      },
+      "tokenIn": 0,
+      "tokenOut": 0,
+      "llmCallsPerEvent": 0,
+      "source": "five-arm-reanalysis-v2",
+      "restraintRate": 0.9545,
+      "unpermittedCount": 3,
+      "negativeRuns": 66
+    },
+    {
+      "armId": "full-rules",
+      "passPositive": 0,
+      "passNegative": 0.631578947368421,
+      "passK": 0,
+      "split": {
+        "train": 0,
+        "templateHoldout": 0,
+        "scenarioTransfer": 0
+      },
+      "tokenIn": 0,
+      "tokenOut": 0,
+      "llmCallsPerEvent": 0,
+      "source": "five-arm-reanalysis-v2",
+      "restraintRate": 0.6818,
+      "unpermittedCount": 21,
+      "negativeRuns": 66
+    },
+    {
+      "armId": "distributed-llm",
+      "passPositive": 0,
+      "passNegative": 0.631578947368421,
+      "passK": 0,
+      "split": {
+        "train": 0,
+        "templateHoldout": 0,
+        "scenarioTransfer": 0
+      },
+      "tokenIn": 10650.593023255815,
+      "tokenOut": 1627.1860465116279,
+      "llmCallsPerEvent": 4.372093023255814,
+      "source": "five-arm-reanalysis-v2",
+      "restraintRate": 0.6316,
+      "unpermittedCount": 21,
+      "negativeRuns": 57
+    },
+    {
+      "armId": "centralized-llm",
+      "passPositive": 0,
+      "passNegative": 0.5789473684210527,
+      "passK": 0,
+      "split": {
+        "train": 0,
+        "templateHoldout": 0,
+        "scenarioTransfer": 0
+      },
+      "tokenIn": 659.546511627907,
+      "tokenOut": 79.38372093023256,
+      "llmCallsPerEvent": 0.2441860465116279,
+      "source": "five-arm-reanalysis-v2",
+      "restraintRate": 0.5789,
+      "unpermittedCount": 24,
+      "negativeRuns": 57
+    }
+  ]
+}

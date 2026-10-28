@@ -1,0 +1,28 @@
+{
+  "name": "physbench",
+  "version": "0.2.0",
+  "description": "PhysBench: A Physically-Grounded Benchmark for Embodied Multi-Agent Evaluation",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "vitest run --config vitest.config.ts",
+    "eval": "vitest run --config vitest.config.ts tests/physbench-eval.vitest.test.ts",
+    "gate": "vitest run --config vitest.config.ts tests/physbench-gm-gate.vitest.test.ts"
+  },
+  "dependencies": {
+    "@active-collaboration/simulation": "file:../embodied-agent-framework/packages/simulation",
+    "@active-collaboration/shared": "file:../embodied-agent-framework/packages/shared"
+  },
+  "devDependencies": {
+    "vitest": "^1.6.1",
+    "typescript": "^5.3.3"
+  },
+  "license": "MIT",
+  "keywords": [
+    "benchmark",
+    "embodied-agents",
+    "physical-outcome",
+    "multi-agent",
+    "evaluation",
+    "cyber-physical-systems"
+  ]

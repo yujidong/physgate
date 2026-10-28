@@ -1,0 +1,32 @@
+{
+  "source": "UCI Appliances Energy Dataset",
+  "date": "2026-10-28T06:55:37.484Z",
+  "deviations": {
+    "temperature_relaxation": {
+      "real_per_hr": {
+        "kitchen": -0.015,
+        "living_room": -0.021,
+        "bathroom": -0.039
+      },
+      "sim_per_hr": 0,
+      "verdict": "simulation never relaxes; real buildings decay 0.015-0.039°C/hr"
+    },
+    "hvac_heating_rate": {
+      "real_c_per_hr": 0.162,
+      "sim_c_per_hr": 96.51474530831099,
+      "ratio": 595.7700327673518,
+      "verdict": "simulation 596x faster"
+    },
+    "natural_drift": {
+      "real_c_per_hr": -0.026999999999999996,
+      "sim_c_per_hr": 0,
+      "verdict": "simulation has no natural drift"
+    }
+  },
+  "implications": [
+    "Simulation thermal dynamics are 100-200x faster than real buildings",
+    "Deadlines in seconds correspond to hours in real buildings",
+    "Need explicit time calibration mapping or real-timescale mode",
+    "BOPTEST already runs at real timescales — our BOPTEST coupling validated this"
+  ]
+}
