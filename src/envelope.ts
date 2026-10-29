@@ -144,12 +144,36 @@ export function deriveEnvelopeSpec(event: TestEventDef, scenarioId: string): Env
  * Controller-visible setpoint for an event (NEVER includes deadline/hold or
  * the evaluator envelope). The C1 arm wiring puts exactly this into the
  * agent-visible event payload.
+ *
+ * Two calibration policies (review N9 setpoint-recalibration ablation):
+ *  - legacy-v1 (default, frozen): target = nominal baseline, tolerance =
+ *    envelope WIDTH. The satisfied band can extend outside the evaluator
+ *    envelope (e.g. temperature 22±8 covers up to 30 against [17,25]) — the
+ *    miscalibration the closed-loop ablation exposed.
+ *  - calibrated-v2: target = envelope CENTER, tolerance = width/4. The
+ *    satisfied band is always strictly inside the evaluator envelope
+ *    (center±width/4 ⊂ [lo,hi] for every family).
  */
+export const OPERATIONAL_SETPOINT_POLICY =
+  (process.env.OUTCOME_SETPOINT_POLICY === 'calibrated-v2' ? 'calibrated-v2' : 'legacy-v1') as
+    'legacy-v1' | 'calibrated-v2';
+
 export function operationalSetpointFor(event: TestEventDef): OperationalSetpoint | null {
   const spec = deriveEnvelopeSpec(event, 'query');
   if (spec.tier !== 'physical') return null;
   const family = PHYSICAL_FAMILIES[spec.envelope!.parameter]!;
   const cal = family[spec.direction!];
+  if (OPERATIONAL_SETPOINT_POLICY === 'calibrated-v2') {
+    const [lo, hi] = cal.envelope;
+    const center = (lo + hi) / 2;
+    const width = hi - lo;
+    return {
+      parameter: spec.envelope!.parameter,
+      zoneId: spec.envelope!.zoneId,
+      target: center,
+      tolerance: width / 4,
+    };
+  }
   const nominal = BASELINE_PARAMS[spec.envelope!.parameter];
   const target = typeof nominal === 'number' ? nominal : baselineOf(spec.envelope!.parameter)!;
   const halfWidth = (cal.envelope[1] - cal.envelope[0]) / 2;

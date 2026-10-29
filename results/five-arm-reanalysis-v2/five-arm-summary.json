@@ -1,6 +1,6 @@
 {
   "reanalysisVersion": "2.0.0",
-  "generatedAt": "2026-10-29T13:20:52.567Z",
+  "generatedAt": "2026-10-29T14:13:17.647Z",
   "queueVersion": "gm-admitted-2026-10-24-v1",
   "gateReport": "tests/experiment-results/outcome-gm/2026-10-24T18-05-32-388Z/gm-gate-report.json",
   "legacyRecords": "tests/experiment-results/outcome-gm/five-arm-matrix/records-*.json",
@@ -157,13 +157,13 @@
         "tokenIn": 0,
         "tokenOut": 0,
         "llmCalls": 0,
-        "wallClockMs": 49570
+        "wallClockMs": 28008
       },
       "costPerEvent": {
         "tokenIn": 0,
         "tokenOut": 0,
         "llmCalls": 0,
-        "wallClockMs": 576.3953488372093
+        "wallClockMs": 325.6744186046512
       }
     },
     {

@@ -25,22 +25,37 @@ import { runAgentStackArm, type AgentStackMode } from './agent-arm.js';
 import { getResultsBaseDir } from '../result-persistence.js';
 import { loadFrozenOutcomeQueue, FROZEN_OUTCOME_GATE_REPORT } from './frozen-queue.js';
 import { CLOSED_LOOP_EXECUTOR_VERSION } from './closed-loop-executor.js';
+import { OPERATIONAL_SETPOINT_POLICY } from './envelope.js';
 
 configureLogger({ level: LoggerLevel.ERROR });
 
 const SEEDS = [11, 22, 33];
-const BASE = join(getResultsBaseDir(), 'outcome-gm', 'closed-loop-cpu-ablation');
+// OUTCOME_ABLATION_VARIANT selects the run: 'main' (legacy setpoints, LLM VCR
+// arms included) or 'setpoint-v2' (calibrated setpoints; full-rules only —
+// recalibrated operational targets change LLM prompts, so VCR replay would
+// miss and live LLM needs GPU).
+const VARIANT = process.env.OUTCOME_ABLATION_VARIANT === 'setpoint-v2' ? 'setpoint-v2' : 'main';
+const BASE = join(
+  getResultsBaseDir(), 'outcome-gm',
+  VARIANT === 'setpoint-v2' ? 'closed-loop-setpoint-ablation' : 'closed-loop-cpu-ablation',
+);
 const CACHE_DB = join(getResultsBaseDir(), 'outcome-gm', 'llm-round2', 'llm-response-cache.db');
 const RECORDS = join(BASE, 'records.jsonl');
 const LLM_MODEL = 'Qwen/Qwen2.5-7B-Instruct';
-const ARMS: Array<{ armId: string; mode: AgentStackMode | 'full-rules'; loop: 'open-loop' | 'closed-loop' }> = [
-  { armId: 'full-rules-open-loop', mode: 'full-rules', loop: 'open-loop' },
-  { armId: 'full-rules-closed-loop', mode: 'full-rules', loop: 'closed-loop' },
-  { armId: 'distributed-llm-open-loop', mode: 'distributed-llm', loop: 'open-loop' },
-  { armId: 'distributed-llm-closed-loop', mode: 'distributed-llm', loop: 'closed-loop' },
-  { armId: 'centralized-llm-open-loop', mode: 'centralized-llm', loop: 'open-loop' },
-  { armId: 'centralized-llm-closed-loop', mode: 'centralized-llm', loop: 'closed-loop' },
-];
+const ARMS: Array<{ armId: string; mode: AgentStackMode | 'full-rules'; loop: 'open-loop' | 'closed-loop' }> =
+  VARIANT === 'setpoint-v2'
+    ? [
+      { armId: 'full-rules-open-loop', mode: 'full-rules', loop: 'open-loop' },
+      { armId: 'full-rules-closed-loop', mode: 'full-rules', loop: 'closed-loop' },
+    ]
+    : [
+      { armId: 'full-rules-open-loop', mode: 'full-rules', loop: 'open-loop' },
+      { armId: 'full-rules-closed-loop', mode: 'full-rules', loop: 'closed-loop' },
+      { armId: 'distributed-llm-open-loop', mode: 'distributed-llm', loop: 'open-loop' },
+      { armId: 'distributed-llm-closed-loop', mode: 'distributed-llm', loop: 'closed-loop' },
+      { armId: 'centralized-llm-open-loop', mode: 'centralized-llm', loop: 'open-loop' },
+      { armId: 'centralized-llm-closed-loop', mode: 'centralized-llm', loop: 'closed-loop' },
+    ];
 
 const queue = loadFrozenOutcomeQueue(FROZEN_OUTCOME_GATE_REPORT);
 
@@ -60,6 +75,7 @@ if (existsSync(RECORDS)) {
 }
 
 function makeClient(): LLMClient | undefined {
+  if (VARIANT === 'setpoint-v2') return undefined; // full-rules only; no LLM calls
   if (!existsSync(CACHE_DB)) throw new Error(`VCR cache missing: ${CACHE_DB}`);
   return new LLMClient('openai-compatible', {
     baseURL: 'http://127.0.0.1:0/v1', // never dialed in replay mode
@@ -136,10 +152,12 @@ function summarize(rows: Stored[]) {
   });
   return {
     protocol: 'closed-loop-cpu-ablation-v1',
+    variant: VARIANT,
+    setpointPolicy: OPERATIONAL_SETPOINT_POLICY,
     generatedAt: new Date().toISOString(),
     seeds: SEEDS,
     queue: { positive: queue.filter(e => !e.isNegativeEvent).length, negative: queue.filter(e => e.isNegativeEvent).length, gate: FROZEN_OUTCOME_GATE_REPORT },
-    vcr: { cache: CACHE_DB, model: LLM_MODEL },
+    vcr: VARIANT === 'setpoint-v2' ? null : { cache: CACHE_DB, model: LLM_MODEL },
     closedLoopExecutorVersion: CLOSED_LOOP_EXECUTOR_VERSION,
     arms,
   };
