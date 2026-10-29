@@ -56,6 +56,7 @@ describe('PhysBench G-M Gate (full admission scan)', () => {
     admittedNegative: 0,
     unreachable: 0,
     nonDiscriminative: 0,
+    negativeInconsistent: 0,
   };
 
   beforeAll(() => {
@@ -76,11 +77,25 @@ describe('PhysBench G-M Gate (full admission scan)', () => {
         } else {
           stats.physical++;
           if (spec.isNegativeEvent) {
-            // Negative events: admitted by definition (no-unpermitted-action semantics)
-            admitted = true;
-            stats.admittedNegative++;
-            reason = 'negative event';
-            discriminability = true; // no-op should pass (correctly)
+            // Negative admission (hardened 2026-10-29): a negative event is
+            // admitted only if its no-op twin maintains the envelope — the
+            // exact analogue of positive-side discriminability. Events whose
+            // injection lands outside the envelope (mislabeled normals) are
+            // excluded with an explicit reason; they are not silently
+            // reclassified.
+            const noop = runOutcomeFixture({
+              scenarioId: scenario.id, eventId: event.id,
+              policyId: 'no-op', seed: SEED,
+            });
+            discriminability = noop.verdict.kind === 'pass';
+            if (discriminability) {
+              admitted = true;
+              stats.admittedNegative++;
+              reason = 'negative event (no-op twin maintains envelope)';
+            } else {
+              stats.negativeInconsistent++;
+              reason = `negative-labeled but no-op twin fails (${noop.verdict.failureMode ?? 'fail'}) — injection outside envelope`;
+            }
           } else {
             // Positive events: check reachability + discriminability
             // Quick check: if the event has an envelope, run greedy
@@ -136,7 +151,7 @@ describe('PhysBench G-M Gate (full admission scan)', () => {
     // eslint-disable-next-line no-console
     console.log(`  admitted: ${stats.admittedPositive} positive + ${stats.admittedNegative} negative`);
     // eslint-disable-next-line no-console
-    console.log(`  excluded: unreachable=${stats.unreachable} nonDisc=${stats.nonDiscriminative}`);
+    console.log(`  excluded: unreachable=${stats.unreachable} nonDisc=${stats.nonDiscriminative} negativeInconsistent=${stats.negativeInconsistent}`);
     expect(allScenarios.length).toBeGreaterThanOrEqual(16);
     expect(stats.totalEvents).toBeGreaterThanOrEqual(350);
   });
@@ -152,6 +167,19 @@ describe('PhysBench G-M Gate (full admission scan)', () => {
       expect(r.reachability, `${r.scenarioId}/${r.eventId}`).toBe(true);
       expect(r.discriminability, `${r.scenarioId}/${r.eventId}`).toBe(true);
     }
+  });
+
+  it('every admitted negative event passes its no-op twin (envelope maintained)', () => {
+    const admittedNeg = results.filter(r => r.admitted && r.isNegativeEvent);
+    expect(admittedNeg.length).toBe(stats.admittedNegative);
+    for (const r of admittedNeg) {
+      expect(r.discriminability, `${r.scenarioId}/${r.eventId}`).toBe(true);
+    }
+    // accounting: physical tier fully partitioned
+    expect(
+      stats.admittedPositive + stats.admittedNegative + stats.unreachable
+      + stats.nonDiscriminative + stats.negativeInconsistent,
+    ).toBe(stats.physical);
   });
 
   it('writes the PhysBench G-M report artifact', () => {
@@ -173,7 +201,7 @@ describe('PhysBench G-M Gate (full admission scan)', () => {
       `- ${allScenarios.length} scenarios | ${stats.totalEvents} events`,
       `- Physical: ${stats.physical} | Natural recovery: ${stats.naturalRecovery} | Unscorable: ${stats.unscorable}`,
       `- Admitted: ${stats.admittedPositive} positive + ${stats.admittedNegative} negative`,
-      `- Excluded: ${stats.unreachable} unreachable, ${stats.nonDiscriminative} non-discriminative`,
+      `- Excluded: ${stats.unreachable} unreachable, ${stats.nonDiscriminative} non-discriminative, ${stats.negativeInconsistent} negative-inconsistent (no-op twin fails)`,
       '',
       '| Scenario | Events | Physical | Admitted+ | Admitted- |',
       '|---|---|---|---|---|',

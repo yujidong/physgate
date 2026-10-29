@@ -1,0 +1,230 @@
+{
+  "generatedAt": "2026-10-29T13:07:03.282Z",
+  "startedAt": "2026-10-29T13:04:15.811Z",
+  "cohort": "physbench-admitted (185 positive + 21 negative)",
+  "gateReport": "physbench-gm/physbench-gm-report.json",
+  "seeds": [
+    11,
+    22,
+    33
+  ],
+  "arms": [
+    "no-op",
+    "perfect-info-greedy",
+    "full-rules"
+  ],
+  "armSummary": {
+    "no-op": {
+      "records": 618,
+      "events": 206,
+      "positive": {
+        "total": 555,
+        "passRate": 0,
+        "decisionAcc": 0,
+        "byFamily": {
+          "co2": {
+            "events": 14,
+            "passRate": 0,
+            "decisionAcc": 0,
+            "meanIae": 25063.31465714285,
+            "meanTimeOutsideSec": 189.28571428571428
+          },
+          "humidity": {
+            "events": 17,
+            "passRate": 0,
+            "decisionAcc": 0,
+            "meanIae": 3193.2402470588218,
+            "meanTimeOutsideSec": 259.3529411764706
+          },
+          "noise": {
+            "events": 0,
+            "passRate": null,
+            "decisionAcc": null,
+            "meanIae": null,
+            "meanTimeOutsideSec": null
+          },
+          "pm2_5": {
+            "events": 1,
+            "passRate": 0,
+            "decisionAcc": 0,
+            "meanIae": 11436.006699999998,
+            "meanTimeOutsideSec": 166
+          },
+          "smoke": {
+            "events": 33,
+            "passRate": 0,
+            "decisionAcc": 0,
+            "meanIae": 33.711499999999916,
+            "meanTimeOutsideSec": 119
+          },
+          "temperature": {
+            "events": 118,
+            "passRate": 0,
+            "decisionAcc": 0,
+            "meanIae": 6815.703371610159,
+            "meanTimeOutsideSec": 1092.8559322033898
+          },
+          "voc": {
+            "events": 2,
+            "passRate": 0,
+            "decisionAcc": 0,
+            "meanIae": 38777.73824999999,
+            "meanTimeOutsideSec": 289
+          }
+        }
+      },
+      "negative": {
+        "total": 63,
+        "restraintRate": 1
+      },
+      "failureModes": {
+        "never-entered": 408,
+        "late": 147
+      },
+      "costPerEvent": {
+        "wallClockMs": 0
+      }
+    },
+    "perfect-info-greedy": {
+      "records": 618,
+      "events": 206,
+      "positive": {
+        "total": 555,
+        "passRate": 1,
+        "decisionAcc": 1,
+        "byFamily": {
+          "co2": {
+            "events": 14,
+            "passRate": 1,
+            "decisionAcc": 1,
+            "meanIae": 10989.37152857142,
+            "meanTimeOutsideSec": 79.71428571428571
+          },
+          "humidity": {
+            "events": 17,
+            "passRate": 1,
+            "decisionAcc": 1,
+            "meanIae": 251.5148,
+            "meanTimeOutsideSec": 20.058823529411764
+          },
+          "noise": {
+            "events": 0,
+            "passRate": null,
+            "decisionAcc": null,
+            "meanIae": null,
+            "meanTimeOutsideSec": null
+          },
+          "pm2_5": {
+            "events": 1,
+            "passRate": 1,
+            "decisionAcc": 1,
+            "meanIae": 819.4238,
+            "meanTimeOutsideSec": 15
+          },
+          "smoke": {
+            "events": 33,
+            "passRate": 1,
+            "decisionAcc": 1,
+            "meanIae": 8.462200000000019,
+            "meanTimeOutsideSec": 30
+          },
+          "temperature": {
+            "events": 118,
+            "passRate": 1,
+            "decisionAcc": 1,
+            "meanIae": 1377.234633050854,
+            "meanTimeOutsideSec": 313.90677966101697
+          },
+          "voc": {
+            "events": 2,
+            "passRate": 1,
+            "decisionAcc": 1,
+            "meanIae": 2775.8949,
+            "meanTimeOutsideSec": 18
+          }
+        }
+      },
+      "negative": {
+        "total": 63,
+        "restraintRate": 1
+      },
+      "failureModes": {},
+      "costPerEvent": {
+        "wallClockMs": 0
+      }
+    },
+    "full-rules": {
+      "records": 618,
+      "events": 206,
+      "positive": {
+        "total": 555,
+        "passRate": 0,
+        "decisionAcc": 0.10810810810810811,
+        "byFamily": {
+          "co2": {
+            "events": 14,
+            "passRate": 0,
+            "decisionAcc": 0,
+            "meanIae": 27556.282085714287,
+            "meanTimeOutsideSec": 194.14285714285714
+          },
+          "humidity": {
+            "events": 17,
+            "passRate": 0,
+            "decisionAcc": 0,
+            "meanIae": 3193.2402470588218,
+            "meanTimeOutsideSec": 259.3529411764706
+          },
+          "noise": {
+            "events": 0,
+            "passRate": null,
+            "decisionAcc": null,
+            "meanIae": null,
+            "meanTimeOutsideSec": null
+          },
+          "pm2_5": {
+            "events": 1,
+            "passRate": 0,
+            "decisionAcc": 0,
+            "meanIae": 11436.006699999998,
+            "meanTimeOutsideSec": 166
+          },
+          "smoke": {
+            "events": 33,
+            "passRate": 0,
+            "decisionAcc": 0,
+            "meanIae": 33.711499999999916,
+            "meanTimeOutsideSec": 119
+          },
+          "temperature": {
+            "events": 118,
+            "passRate": 0,
+            "decisionAcc": 0.1694915254237288,
+            "meanIae": 6056.2395576270865,
+            "meanTimeOutsideSec": 1032.8050847457628
+          },
+          "voc": {
+            "events": 2,
+            "passRate": 0,
+            "decisionAcc": 0,
+            "meanIae": 38777.73824999999,
+            "meanTimeOutsideSec": 289
+          }
+        }
+      },
+      "negative": {
+        "total": 63,
+        "restraintRate": 0.6666666666666666
+      },
+      "failureModes": {
+        "transient": 60,
+        "late": 144,
+        "never-entered": 351,
+        "unpermitted-action": 21
+      },
+      "costPerEvent": {
+        "wallClockMs": 119.64886731391586
+      }
+    }
+  }
+}

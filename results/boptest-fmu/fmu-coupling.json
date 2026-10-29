@@ -1,0 +1,144 @@
+{
+  "source": "REAL BOPTEST bestest_hydronic_heat_pump FMU (linux64) via Docker REST API",
+  "physics": "IDEAS/Modelica BESTEST Case 900, 192m², scalingFactor=4",
+  "envelope_C": {
+    "lower": 21,
+    "upper": 24
+  },
+  "deadline_h": 12,
+  "hold_h": 1,
+  "verdictSemantics": "identical to main instrument: enter-by-deadline + consecutive-hold",
+  "results": [
+    {
+      "policy": "no-op",
+      "verdict": {
+        "kind": "fail",
+        "mode": "never-entered",
+        "why": "never reached [21,24]°C"
+      },
+      "samples": [
+        {
+          "t": 1,
+          "T": 19.2,
+          "ok": false
+        },
+        {
+          "t": 2,
+          "T": 19.6,
+          "ok": false
+        },
+        {
+          "t": 3,
+          "T": 20,
+          "ok": false
+        },
+        {
+          "t": 4,
+          "T": 20.2,
+          "ok": false
+        },
+        {
+          "t": 5,
+          "T": 20.4,
+          "ok": false
+        },
+        {
+          "t": 6,
+          "T": 20.5,
+          "ok": false
+        },
+        {
+          "t": 7,
+          "T": 20.6,
+          "ok": false
+        },
+        {
+          "t": 8,
+          "T": 20.6,
+          "ok": false
+        },
+        {
+          "t": 9,
+          "T": 20.7,
+          "ok": false
+        },
+        {
+          "t": 10,
+          "T": 20.6,
+          "ok": false
+        }
+      ]
+    },
+    {
+      "policy": "greedy",
+      "verdict": {
+        "kind": "pass",
+        "entered_h": 11,
+        "held_h": 2,
+        "why": "entered 11h ≤ 12h, held 2h ≥ 1h"
+      },
+      "samples": [
+        {
+          "t": 1,
+          "T": 19.2,
+          "ok": false
+        },
+        {
+          "t": 2,
+          "T": 19.6,
+          "ok": false
+        },
+        {
+          "t": 3,
+          "T": 20,
+          "ok": false
+        },
+        {
+          "t": 4,
+          "T": 20.2,
+          "ok": false
+        },
+        {
+          "t": 5,
+          "T": 20.4,
+          "ok": false
+        },
+        {
+          "t": 6,
+          "T": 20.5,
+          "ok": false
+        },
+        {
+          "t": 7,
+          "T": 20.6,
+          "ok": false
+        },
+        {
+          "t": 8,
+          "T": 20.7,
+          "ok": false
+        },
+        {
+          "t": 9,
+          "T": 20.8,
+          "ok": false
+        },
+        {
+          "t": 10,
+          "T": 20.9,
+          "ok": false
+        },
+        {
+          "t": 11,
+          "T": 21,
+          "ok": true
+        },
+        {
+          "t": 12,
+          "T": 21.1,
+          "ok": true
+        }
+      ]
+    }
+  ]
+}

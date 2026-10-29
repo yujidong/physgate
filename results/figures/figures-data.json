@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-28T11:34:59.602Z",
+  "generatedAt": "2026-10-29T13:27:07.389Z",
   "sources": {
     "v2": "C:\\Users\\yujid\\projects\\embodied-agent-framework\\packages\\core\\tests\\experiment-results\\outcome-gm\\five-arm-reanalysis-v2\\five-arm-summary.json",
     "legacy": "C:\\Users\\yujid\\projects\\embodied-agent-framework\\packages\\core\\tests\\experiment-results\\outcome-gm\\legacy-noop-audit\\legacy-noop-audit.json",
@@ -95,7 +95,7 @@
       "source": "five-arm-reanalysis-v2",
       "restraintRate": 1,
       "unpermittedCount": 0,
-      "negativeRuns": 66
+      "negativeRuns": 57
     },
     {
       "armId": "perfect-info-greedy",
@@ -111,9 +111,9 @@
       "tokenOut": 0,
       "llmCallsPerEvent": 0,
       "source": "five-arm-reanalysis-v2",
-      "restraintRate": 0.9545,
-      "unpermittedCount": 3,
-      "negativeRuns": 66
+      "restraintRate": 1,
+      "unpermittedCount": 0,
+      "negativeRuns": 57
     },
     {
       "armId": "full-rules",
@@ -129,9 +129,9 @@
       "tokenOut": 0,
       "llmCallsPerEvent": 0,
       "source": "five-arm-reanalysis-v2",
-      "restraintRate": 0.6818,
+      "restraintRate": 0.6316,
       "unpermittedCount": 21,
-      "negativeRuns": 66
+      "negativeRuns": 57
     },
     {
       "armId": "distributed-llm",

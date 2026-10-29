@@ -1,0 +1,132 @@
+{
+  "protocol": "closed-loop-cpu-ablation-v1",
+  "generatedAt": "2026-10-29T13:36:48.600Z",
+  "seeds": [
+    11,
+    22,
+    33
+  ],
+  "queue": {
+    "positive": 67,
+    "negative": 19,
+    "gate": "C:\\Users\\yujid\\projects\\embodied-agent-framework\\packages\\core\\tests\\experiment-results\\outcome-gm\\2026-10-24T18-05-32-388Z\\gm-gate-report.json"
+  },
+  "vcr": {
+    "cache": "C:\\Users\\yujid\\projects\\embodied-agent-framework\\packages\\core\\tests\\experiment-results\\outcome-gm\\llm-round2\\llm-response-cache.db",
+    "model": "Qwen/Qwen2.5-7B-Instruct"
+  },
+  "closedLoopExecutorVersion": "1.0.0",
+  "arms": [
+    {
+      "armId": "full-rules-open-loop",
+      "records": 258,
+      "replayMisses": 0,
+      "positiveFailureModes": {
+        "transient": 60,
+        "late": 69,
+        "never-entered": 72,
+        "unpermitted-action": 21
+      },
+      "positiveDecisionAcc": 0.29850746268656714,
+      "positiveMeanIae": 2980.1547343283573,
+      "positiveMeanTimeOutsideSec": 456.34328358208955,
+      "positiveEvents": 67,
+      "positiveRecords": 201,
+      "positivePassRate": 0,
+      "negativeRecords": 57,
+      "restraintRate": 0.631578947368421
+    },
+    {
+      "armId": "full-rules-closed-loop",
+      "records": 258,
+      "replayMisses": 0,
+      "positiveFailureModes": {
+        "never-entered": 132,
+        "late": 69,
+        "unpermitted-action": 21
+      },
+      "positiveDecisionAcc": 0.29850746268656714,
+      "positiveMeanIae": 3306.971843283579,
+      "positiveMeanTimeOutsideSec": 562.1044776119403,
+      "positiveEvents": 67,
+      "positiveRecords": 201,
+      "positivePassRate": 0,
+      "negativeRecords": 57,
+      "restraintRate": 0.631578947368421
+    },
+    {
+      "armId": "distributed-llm-open-loop",
+      "records": 258,
+      "replayMisses": 0,
+      "positiveFailureModes": {
+        "transient": 60,
+        "late": 69,
+        "never-entered": 72,
+        "unpermitted-action": 21
+      },
+      "positiveDecisionAcc": 0.29850746268656714,
+      "positiveMeanIae": 2980.1547343283573,
+      "positiveMeanTimeOutsideSec": 456.34328358208955,
+      "positiveEvents": 67,
+      "positiveRecords": 201,
+      "positivePassRate": 0,
+      "negativeRecords": 57,
+      "restraintRate": 0.631578947368421
+    },
+    {
+      "armId": "distributed-llm-closed-loop",
+      "records": 258,
+      "replayMisses": 0,
+      "positiveFailureModes": {
+        "never-entered": 132,
+        "late": 69,
+        "unpermitted-action": 21
+      },
+      "positiveDecisionAcc": 0.29850746268656714,
+      "positiveMeanIae": 3306.971843283579,
+      "positiveMeanTimeOutsideSec": 562.1044776119403,
+      "positiveEvents": 67,
+      "positiveRecords": 201,
+      "positivePassRate": 0,
+      "negativeRecords": 57,
+      "restraintRate": 0.631578947368421
+    },
+    {
+      "armId": "centralized-llm-open-loop",
+      "records": 258,
+      "replayMisses": 0,
+      "positiveFailureModes": {
+        "transient": 72,
+        "late": 69,
+        "never-entered": 60,
+        "unpermitted-action": 24
+      },
+      "positiveDecisionAcc": 0.3582089552238806,
+      "positiveMeanIae": 2650.525749999998,
+      "positiveMeanTimeOutsideSec": 435.2686567164179,
+      "positiveEvents": 67,
+      "positiveRecords": 201,
+      "positivePassRate": 0,
+      "negativeRecords": 57,
+      "restraintRate": 0.5789473684210527
+    },
+    {
+      "armId": "centralized-llm-closed-loop",
+      "records": 258,
+      "replayMisses": 0,
+      "positiveFailureModes": {
+        "never-entered": 132,
+        "late": 69,
+        "unpermitted-action": 24
+      },
+      "positiveDecisionAcc": 0.3582089552238806,
+      "positiveMeanIae": 3035.1536231343275,
+      "positiveMeanTimeOutsideSec": 562.1044776119403,
+      "positiveEvents": 67,
+      "positiveRecords": 201,
+      "positivePassRate": 0,
+      "negativeRecords": 57,
+      "restraintRate": 0.5789473684210527
+    }
+  ]
+}

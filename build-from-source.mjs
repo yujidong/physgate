@@ -47,8 +47,14 @@ const copies = [
   ['new-families-calibration.vitest.test.ts', 'tests/new-families.vitest.test.ts', 'New family calibration'],
   ['sensitivity.vitest.test.ts', 'tests/sensitivity.vitest.test.ts', 'Envelope sensitivity (27 grids)'],
   ['boptest-coupling.vitest.test.ts', 'tests/boptest.vitest.test.ts', 'BOPTEST FMU coupling'],
-  ['boptest-fmu.vitest.test.ts', 'tests/boptest-fmu.vitest.test.ts', 'BOPTEST real FMU portability'],
+  ['boptest-fmu.vitest.test.ts', 'tests/boptest-fmu.vitest.test.ts', 'BOPTEST real FMU rerun scoring (pre-registered criterion)'],
   ['physbench-gm-gate.vitest.test.ts', 'tests/gm-gate.vitest.test.ts', 'G-M gate'],
+  // Experiment runners (2026-10-29 review-response round)
+  ['five-arm-physbench-full.mts', 'src/five-arm-physbench-full.mts', 'Full-cohort CPU arms + decisionAcc + continuous metrics'],
+  ['five-arm-physbench-full.vitest.test.ts', 'tests/five-arm-physbench-full.vitest.test.ts', 'Pinned full-cohort CPU-arm results'],
+  ['closed-loop-cpu-ablation.mts', 'src/closed-loop-cpu-ablation.mts', 'Open/closed-loop ablation (VCR replay, GPU-free)'],
+  ['closed-loop-cpu-ablation.vitest.test.ts', 'tests/closed-loop-cpu-ablation.vitest.test.ts', 'Pinned closed-loop ablation results'],
+  ['boptest-fmu-rerun.sh', 'scripts/boptest-fmu-rerun.sh', 'Real-FMU rerun runner (3 arms x 3 reps, pre-registered criterion)'],
 ];
 
 let copied = 0;
@@ -64,7 +70,7 @@ for (const [src, dest, desc] of copies) {
 
 // Copy results artifacts
 const resultsDir = join(FRAMEWORK, 'packages', 'core', 'tests', 'experiment-results', 'outcome-gm');
-for (const subdir of ['physbench-gm', 'figures', 'calibration', 'sensitivity', 'five-arm-reanalysis-v2']) {
+for (const subdir of ['physbench-gm', 'figures', 'calibration', 'sensitivity', 'five-arm-reanalysis-v2', 'five-arm-physbench-full', 'closed-loop-cpu-ablation', 'boptest-fmu']) {
   const src = join(resultsDir, subdir);
   const dest = join(REPO, 'results', subdir);
   if (existsSync(src)) {

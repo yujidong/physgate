@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-28T11:35:50.845Z",
+  "date": "2026-10-29T13:21:23.714Z",
   "seed": 7,
   "scenarios": 16,
   "stats": {
@@ -8,9 +8,10 @@
     "naturalRecovery": 24,
     "unscorable": 138,
     "admittedPositive": 185,
-    "admittedNegative": 32,
+    "admittedNegative": 21,
     "unreachable": 9,
-    "nonDiscriminative": 25
+    "nonDiscriminative": 25,
+    "negativeInconsistent": 11
   },
   "events": [
     {
@@ -45,7 +46,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -105,7 +106,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -189,7 +190,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -273,7 +274,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -549,7 +550,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -561,7 +562,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -573,7 +574,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -585,7 +586,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -621,7 +622,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -813,7 +814,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -861,7 +862,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -968,10 +969,10 @@
       "parameter": "noise",
       "tier": "physical",
       "isNegativeEvent": true,
-      "admitted": true,
-      "admissionReason": "negative event",
+      "admitted": false,
+      "admissionReason": "negative-labeled but no-op twin fails (never-entered) — injection outside envelope",
       "reachability": null,
-      "discriminability": true
+      "discriminability": false
     },
     {
       "scenarioId": "campus",
@@ -1041,7 +1042,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -1173,7 +1174,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -1245,7 +1246,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -1485,7 +1486,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -1545,7 +1546,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -1617,7 +1618,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -1965,7 +1966,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -1989,7 +1990,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -2001,7 +2002,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -2025,7 +2026,7 @@
       "tier": "physical",
       "isNegativeEvent": true,
       "admitted": true,
-      "admissionReason": "negative event",
+      "admissionReason": "negative event (no-op twin maintains envelope)",
       "reachability": null,
       "discriminability": true
     },
@@ -2288,10 +2289,10 @@
       "parameter": "co2",
       "tier": "physical",
       "isNegativeEvent": true,
-      "admitted": true,
-      "admissionReason": "negative event",
+      "admitted": false,
+      "admissionReason": "negative-labeled but no-op twin fails (never-entered) — injection outside envelope",
       "reachability": null,
-      "discriminability": true
+      "discriminability": false
     },
     {
       "scenarioId": "physbench-school",
@@ -2300,10 +2301,10 @@
       "parameter": "co2",
       "tier": "physical",
       "isNegativeEvent": true,
-      "admitted": true,
-      "admissionReason": "negative event",
+      "admitted": false,
+      "admissionReason": "negative-labeled but no-op twin fails (never-entered) — injection outside envelope",
       "reachability": null,
-      "discriminability": true
+      "discriminability": false
     },
     {
       "scenarioId": "physbench-school",
@@ -3080,10 +3081,10 @@
       "parameter": "co2",
       "tier": "physical",
       "isNegativeEvent": true,
-      "admitted": true,
-      "admissionReason": "negative event",
+      "admitted": false,
+      "admissionReason": "negative-labeled but no-op twin fails (never-entered) — injection outside envelope",
       "reachability": null,
-      "discriminability": true
+      "discriminability": false
     },
     {
       "scenarioId": "physbench-hospital_ward",
@@ -3092,10 +3093,10 @@
       "parameter": "co2",
       "tier": "physical",
       "isNegativeEvent": true,
-      "admitted": true,
-      "admissionReason": "negative event",
+      "admitted": false,
+      "admissionReason": "negative-labeled but no-op twin fails (never-entered) — injection outside envelope",
       "reachability": null,
-      "discriminability": true
+      "discriminability": false
     },
     {
       "scenarioId": "physbench-hospital_ward",
@@ -3656,10 +3657,10 @@
       "parameter": "co2",
       "tier": "physical",
       "isNegativeEvent": true,
-      "admitted": true,
-      "admissionReason": "negative event",
+      "admitted": false,
+      "admissionReason": "negative-labeled but no-op twin fails (never-entered) — injection outside envelope",
       "reachability": null,
-      "discriminability": true
+      "discriminability": false
     },
     {
       "scenarioId": "physbench-highrise",
@@ -3668,10 +3669,10 @@
       "parameter": "co2",
       "tier": "physical",
       "isNegativeEvent": true,
-      "admitted": true,
-      "admissionReason": "negative event",
+      "admitted": false,
+      "admissionReason": "negative-labeled but no-op twin fails (never-entered) — injection outside envelope",
       "reachability": null,
-      "discriminability": true
+      "discriminability": false
     },
     {
       "scenarioId": "physbench-highrise",
@@ -4136,10 +4137,10 @@
       "parameter": "co2",
       "tier": "physical",
       "isNegativeEvent": true,
-      "admitted": true,
-      "admissionReason": "negative event",
+      "admitted": false,
+      "admissionReason": "negative-labeled but no-op twin fails (never-entered) — injection outside envelope",
       "reachability": null,
-      "discriminability": true
+      "discriminability": false
     },
     {
       "scenarioId": "physbench-greenhouse",
@@ -4148,10 +4149,10 @@
       "parameter": "co2",
       "tier": "physical",
       "isNegativeEvent": true,
-      "admitted": true,
-      "admissionReason": "negative event",
+      "admitted": false,
+      "admissionReason": "negative-labeled but no-op twin fails (never-entered) — injection outside envelope",
       "reachability": null,
-      "discriminability": true
+      "discriminability": false
     },
     {
       "scenarioId": "physbench-greenhouse",
@@ -4880,10 +4881,10 @@
       "parameter": "co2",
       "tier": "physical",
       "isNegativeEvent": true,
-      "admitted": true,
-      "admissionReason": "negative event",
+      "admitted": false,
+      "admissionReason": "negative-labeled but no-op twin fails (never-entered) — injection outside envelope",
       "reachability": null,
-      "discriminability": true
+      "discriminability": false
     },
     {
       "scenarioId": "physbench-hotel",
@@ -4892,10 +4893,10 @@
       "parameter": "co2",
       "tier": "physical",
       "isNegativeEvent": true,
-      "admitted": true,
-      "admissionReason": "negative event",
+      "admitted": false,
+      "admissionReason": "negative-labeled but no-op twin fails (never-entered) — injection outside envelope",
       "reachability": null,
-      "discriminability": true
+      "discriminability": false
     },
     {
       "scenarioId": "physbench-hotel",

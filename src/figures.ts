@@ -26,7 +26,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 
 import { join } from 'node:path';
 import { getResultsBaseDir } from '../result-persistence.js';
 import { buildTierInventory, FROZEN_SCENARIO_IDS } from './tier-inventory.js';
-import { FROZEN_OUTCOME_COUNTS, FROZEN_OUTCOME_EXCLUDED_EVENT_IDS } from './frozen-queue.js';
+import { FROZEN_OUTCOME_COUNTS, FROZEN_OUTCOME_EXCLUDED_EVENT_IDS, frozenOutcomeEventKey, loadFrozenOutcomeQueue, FROZEN_OUTCOME_GATE_REPORT } from './frozen-queue.js';
 
 // palette: colorblind-safe (Okabe–Ito)
 const C = {
@@ -176,12 +176,16 @@ export function buildFigureData(): FigureData {
   // failureMode per run; the summaries only have aggregate pass−).
   const restraintByArm = new Map<string, { unpermitted: number; runs: number }>();
   const matrixDir = join(base, 'outcome-gm', 'five-arm-matrix');
+  // queue-filter to the frozen cohort (same selection as five-arm v2) so the
+  // figure restraint numbers match the summary the paper cites
+  const queueKeys = new Set(loadFrozenOutcomeQueue(FROZEN_OUTCOME_GATE_REPORT).map(frozenOutcomeEventKey));
   if (existsSync(matrixDir)) {
     for (const f of readdirSync(matrixDir)) {
       if (!f.startsWith('records-') || !f.endsWith('.json')) continue;
-      const rows = JSON.parse(readFileSync(join(matrixDir, f), 'utf-8')) as SlimRecord[];
+      const rows = JSON.parse(readFileSync(join(matrixDir, f), 'utf8')) as SlimRecord[];
       for (const r of rows) {
         if (!r.negative) continue;
+        if (!queueKeys.has(frozenOutcomeEventKey(r))) continue;
         const e = restraintByArm.get(r.armId) ?? { unpermitted: 0, runs: 0 };
         e.runs++;
         if (r.failureMode === 'unpermitted-action') e.unpermitted++;

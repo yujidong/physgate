@@ -1,96 +1,97 @@
 /**
- * BOPTEST REAL FMU portability proof — validates raw trajectories captured
- * by the bash+curl runner against our envelope/deadline/hold semantics.
+ * BOPTEST REAL FMU rerun — offline scoring of the archived rerun artifact
+ * (review W6, 2026-10-29).
  *
- * Raw data: %TEMP%/bop-fmu-results/fmu-raw.json (produced by boptest-fmu-runner)
- * The FMU ran inside Docker (linux64 binary, REAL BESTEST Case 900 physics).
- * Self-skips when raw data is absent.
+ * The trajectories in outcome-gm/boptest-fmu/rerun/fmu-rerun.json were
+ * produced by boptest-fmu-rerun.sh against the live Docker FMU stack
+ * (bestest_hydronic_heat_pump, 120 hourly advances per run, worker-container
+ * logs archived alongside). The criterion in rerun/criterion.json was fixed
+ * BEFORE the runs (v2 adds the terminal-sample condition; see the revision
+ * note there for the override-leak incident that motivated it).
+ *
+ * This test re-derives the verdicts from the raw samples and pins them.
+ * It self-skips only if the artifact is absent (regenerate via the runner).
  */
 
 import { describe, it, expect, beforeAll } from 'vitest';
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { getResultsBaseDir } from '../result-persistence.js';
 
-const RAW_PATH = join(
-  process.env.TEMP ?? '/tmp', 'bop-fmu-results', 'fmu-raw.json',
-);
+const RERUN = join(getResultsBaseDir(), 'outcome-gm', 'boptest-fmu', 'rerun', 'fmu-rerun.json');
 
-interface Sample { t: number; T: number; ok: boolean }
-interface Arm { policy: string; samples: Sample[] }
-interface RawFile { source: string; results: Arm[] }
-
-const COMFORT = { lower: 21.0, upper: 24.0 };
-
-function verdict(samples: Sample[], deadline_h: number, hold_h: number) {
-  const first = samples.findIndex(s => s.ok);
-  if (first < 0) return { kind: 'fail' as const, mode: 'never-entered', why: `never reached [21,24]°C` };
-  const entered = samples[first].t;
-  let held = 0;
-  for (let i = first; i < samples.length && samples[i].ok; i++) held++;
-  const finalOk = samples[samples.length - 1].ok;
-  if (entered > deadline_h) return { kind: 'fail' as const, mode: 'late', entered_h: entered, held_h: held, why: `entered ${entered}h > deadline ${deadline_h}h` };
-  if (held < hold_h) return { kind: 'fail' as const, mode: 'transient', entered_h: entered, held_h: held, why: `held ${held}h < ${hold_h}h` };
-  if (!finalOk) return { kind: 'fail' as const, mode: 'transient', why: 'left band before end' };
-  return { kind: 'pass' as const, entered_h: entered, held_h: held, why: `entered ${entered}h ≤ ${deadline_h}h, held ${held}h ≥ ${hold_h}h` };
+interface Sample { t: number; T: number }
+interface RunRow { policy: string; rep: number; testid: string; samples: Sample[] }
+interface RerunFile {
+  source: string;
+  criterion: { envelopeC: [number, number]; deadlineSteps: number; holdSteps: number; horizonSteps: number };
+  results: Array<RunRow & { enterStep: number | null; maxConsecutiveHoldSteps: number; pass: boolean }>;
 }
 
-let hasData = false;
-let raw: RawFile | null = null;
-
-beforeAll(() => {
-  if (existsSync(RAW_PATH)) {
-    raw = JSON.parse(readFileSync(RAW_PATH, 'utf-8')) as RawFile;
-    hasData = (raw?.results?.length ?? 0) >= 2;
+function verdict(samples: Sample[], lo: number, hi: number, deadline: number, hold: number) {
+  const enterIdx = samples.findIndex(s => s.T >= lo && s.T <= hi);
+  const enterStep = enterIdx >= 0 ? samples[enterIdx].t : null;
+  let maxHold = 0;
+  if (enterStep !== null && enterStep <= deadline) {
+    let run = 0;
+    for (const s of samples.slice(enterIdx)) {
+      run = s.T >= lo && s.T <= hi ? run + 1 : 0;
+      maxHold = Math.max(maxHold, run);
+    }
   }
-  if (!hasData) console.log('[bop-fmu] raw data not found — self-skip (run boptest-fmu-runner.sh first)');
-});
+  const last = samples[samples.length - 1];
+  const terminalOk = !!last && last.T >= lo && last.T <= hi;
+  const enterOk = enterStep !== null && enterStep <= deadline;
+  return { enterStep, maxHold, terminalOk, pass: enterOk && maxHold >= hold && terminalOk };
+}
 
-describe('BOPTEST REAL FMU portability (from captured trajectories)', () => {
-  it('no-op FAILS on real BOPTEST physics', () => {
-    if (!hasData || !raw) return;
-    const noop = raw.results.find(r => r.policy === 'no-op');
-    expect(noop).toBeDefined();
-    const v = verdict(noop!.samples, 12, 1); // generous 12h deadline
-    console.log(`[bop-fmu:no-op] ${v.kind}/${v.mode} | ${v.why}`);
-    console.log(`  ${noop!.samples.map(s => `${s.t}h:${s.T}°C`).join(' ')}`);
-    expect(v.kind).toBe('fail');
+describe('BOPTEST real-FMU rerun (pre-registered criterion v2)', () => {
+  let file: RerunFile | null = null;
+  beforeAll(() => {
+    if (existsSync(RERUN)) file = JSON.parse(readFileSync(RERUN, 'utf8')) as RerunFile;
+    else console.log('[bop-fmu-rerun] artifact not found — self-skip (run boptest-fmu-rerun.sh first)');
   });
 
-  it('greedy reaches comfort band on real BOPTEST physics (with realistic deadline)', () => {
-    if (!hasData || !raw) return;
-    const greedy = raw.results.find(r => r.policy === 'greedy');
-    expect(greedy).toBeDefined();
-    // The REAL 192m² FMU has large thermal mass: reaching 21°C takes ~11h.
-    // Set deadline=12h to match the FMU's actual physics (calibrated from data).
-    const v = verdict(greedy!.samples, 12, 1);
-    console.log(`[bop-fmu:greedy] ${v.kind}/${v.mode} | ${v.why}`);
-    console.log(`  ${greedy!.samples.map(s => `${s.t}h:${s.T}°C`).join(' ')}`);
-    // With a 12h deadline (matching the FMU's real thermal response time),
-    // greedy should pass: entered at 11h ≤ 12h, held ≥ 1h
-    expect(v.kind).toBe('pass');
-    expect(v.entered_h ?? 99).toBeLessThanOrEqual(12);
+  it('artifact exists with 9 runs (3 arms x 3 reps)', () => {
+    expect(file, RERUN).not.toBeNull();
+    expect(file!.results).toHaveLength(9);
+    expect(new Set(file!.results.map(r => r.policy)))
+      .toEqual(new Set(['no-op-suppressed', 'no-op-baseline', 'greedy']));
   });
 
-  it('writes the portability artifact', () => {
-    if (!hasData || !raw) return;
-    const dir = join(getResultsBaseDir(), 'outcome-gm', 'boptest-fmu');
-    mkdirSync(dir, { recursive: true });
-    const noopV = verdict(raw.results.find(r => r.policy === 'no-op')!.samples, 12, 1);
-    const greedyV = verdict(raw.results.find(r => r.policy === 'greedy')!.samples, 12, 1);
-    writeFileSync(join(dir, 'fmu-coupling.json'), JSON.stringify({
-      source: 'REAL BOPTEST bestest_hydronic_heat_pump FMU (linux64) via Docker REST API',
-      physics: 'IDEAS/Modelica BESTEST Case 900, 192m², scalingFactor=4',
-      envelope_C: COMFORT,
-      deadline_h: 12, // calibrated from REAL FMU thermal response (~11h to reach band)
-      hold_h: 1,
-      verdictSemantics: 'identical to main instrument: enter-by-deadline + consecutive-hold',
-      results: raw.results.map(r => ({
-        policy: r.policy,
-        verdict: r.policy === 'no-op' ? noopV : greedyV,
-        samples: r.samples,
-      })),
-    }, null, 2));
-    console.log(`[bop-fmu] artifact → ${dir}`);
+  it('re-derived verdicts match the artifact verdicts (scorer agreement)', () => {
+    const { envelopeC, deadlineSteps, holdSteps } = file!.criterion;
+    const [lo, hi] = envelopeC;
+    for (const row of file!.results) {
+      const v = verdict(row.samples, lo, hi, deadlineSteps, holdSteps);
+      expect(v.pass, `${row.policy} rep${row.rep}`).toBe(row.pass);
+      expect(v.enterStep, `${row.policy} rep${row.rep}`).toBe(row.enterStep);
+      expect(v.maxHold, `${row.policy} rep${row.rep}`).toBe(row.maxConsecutiveHoldSteps);
+    }
+  });
+
+  it('pinned: suppressed no-op FAILs (never enters), baseline controller PASSes, hourly greedy FAILs hold', () => {
+    const byPolicy = (p: string) => file!.results.filter(r => r.policy === p);
+    for (const row of byPolicy('no-op-suppressed')) {
+      expect(row.enterStep, `rep${row.rep}`).toBeNull();
+      expect(row.pass).toBe(false);
+    }
+    for (const row of byPolicy('no-op-baseline')) {
+      expect(row.pass, `rep${row.rep}`).toBe(true);
+      expect(row.enterStep).toBe(23);
+      expect(row.maxConsecutiveHoldSteps).toBeGreaterThanOrEqual(file!.criterion.holdSteps);
+    }
+    for (const row of byPolicy('greedy')) {
+      expect(row.enterStep, `rep${row.rep}`).toBe(11);
+      expect(row.maxConsecutiveHoldSteps, `rep${row.rep}`).toBeLessThan(file!.criterion.holdSteps);
+      expect(row.pass).toBe(false);
+    }
+  });
+
+  it('determinism: repetitions are bit-identical per arm', () => {
+    for (const policy of ['no-op-suppressed', 'no-op-baseline', 'greedy'] as const) {
+      const reps = file!.results.filter(r => r.policy === policy).map(r => JSON.stringify(r.samples));
+      expect(new Set(reps).size, policy).toBe(1);
+    }
   });
 });
