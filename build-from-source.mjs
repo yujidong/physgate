@@ -68,16 +68,26 @@ for (const [src, dest, desc] of copies) {
   copied++;
 }
 
-// Copy results artifacts
+// Copy results artifacts (recursive). Excludes bulky raw record dumps that
+// the paper does not cite (the pinned summaries carry every reported number);
+// raw records stay in the host repo / archived experiment-results.
+const SKIP = new Set([
+  'records.jsonl', // closed-loop ablation raw records (~36 MB); summary.json carries every reported number
+]);
+function copyTree(srcDir, destDir) {
+  mkdirSync(destDir, { recursive: true });
+  for (const f of readdirSync(srcDir, { withFileTypes: true })) {
+    if (SKIP.has(f.name)) continue;
+    if (f.isDirectory()) copyTree(join(srcDir, f.name), join(destDir, f.name));
+    else { try { copyFileSync(join(srcDir, f.name), join(destDir, f.name)); } catch {} }
+  }
+}
 const resultsDir = join(FRAMEWORK, 'packages', 'core', 'tests', 'experiment-results', 'outcome-gm');
 for (const subdir of ['physbench-gm', 'figures', 'calibration', 'sensitivity', 'five-arm-reanalysis-v2', 'five-arm-physbench-full', 'closed-loop-cpu-ablation', 'boptest-fmu']) {
   const src = join(resultsDir, subdir);
   const dest = join(REPO, 'results', subdir);
   if (existsSync(src)) {
-    mkdirSync(dest, { recursive: true });
-    for (const f of readdirSync(src)) {
-      try { copyFileSync(join(src, f), join(dest, f)); } catch {}
-    }
+    copyTree(src, dest);
     console.log(`  ✓ results/${subdir}/`);
     copied++;
   }

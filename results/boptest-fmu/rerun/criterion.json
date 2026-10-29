@@ -1,0 +1,10 @@
+{
+  "preregisteredAt": "2026-10-29 (before rerun)",
+  "revision": "v2 (2026-10-29, same day): added terminal-sample condition to match evaluate.ts Definition 4 exactly. Motivation: the greedy arm's first execution leaked a persistent BOPTEST override (heat never released; terminal state 32.1 C outside the band) which enter+hold alone scored as PASS — the terminal condition is what catches it. Enter/hold thresholds unchanged from v1.",
+  "envelopeC": [21.0, 24.0],
+  "deadlineSteps": 100,
+  "holdSteps": 10,
+  "horizonSteps": 120,
+  "derivation": "deadline 100h = 600s x 596 calibration factor (99.33h rounded); hold 10h = 60s x 596 (9.93h rounded); envelope = published BOPTEST comfort band for bestest_hydronic_heat_pump",
+  "verdict": "enter-by-deadline AND consecutive in-envelope hold >= 10 steps from first entry (no re-arm) AND terminal sample in envelope — same predicate family as evaluate.ts"
+}
