@@ -83,7 +83,7 @@ function copyTree(srcDir, destDir) {
   }
 }
 const resultsDir = join(FRAMEWORK, 'packages', 'core', 'tests', 'experiment-results', 'outcome-gm');
-for (const subdir of ['physbench-gm', 'figures', 'calibration', 'sensitivity', 'five-arm-reanalysis-v2', 'five-arm-physbench-full', 'closed-loop-cpu-ablation', 'boptest-fmu']) {
+for (const subdir of ['physbench-gm', 'figures', 'calibration', 'sensitivity', 'five-arm-reanalysis-v2', 'five-arm-physbench-full', 'closed-loop-cpu-ablation', 'closed-loop-setpoint-ablation', 'boptest-fmu']) {
   const src = join(resultsDir, subdir);
   const dest = join(REPO, 'results', subdir);
   if (existsSync(src)) {

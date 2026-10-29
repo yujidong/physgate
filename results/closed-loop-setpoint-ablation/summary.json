@@ -1,0 +1,57 @@
+{
+  "protocol": "closed-loop-cpu-ablation-v1",
+  "variant": "setpoint-v2",
+  "setpointPolicy": "calibrated-v2",
+  "generatedAt": "2026-10-29T14:07:48.385Z",
+  "seeds": [
+    11,
+    22,
+    33
+  ],
+  "queue": {
+    "positive": 67,
+    "negative": 19,
+    "gate": "C:\\Users\\yujid\\projects\\embodied-agent-framework\\packages\\core\\tests\\experiment-results\\outcome-gm\\2026-10-24T18-05-32-388Z\\gm-gate-report.json"
+  },
+  "vcr": null,
+  "closedLoopExecutorVersion": "1.0.0",
+  "arms": [
+    {
+      "armId": "full-rules-open-loop",
+      "records": 258,
+      "replayMisses": 0,
+      "positiveFailureModes": {
+        "transient": 60,
+        "late": 69,
+        "never-entered": 72,
+        "unpermitted-action": 21
+      },
+      "positiveDecisionAcc": 0.29850746268656714,
+      "positiveMeanIae": 2980.1547343283573,
+      "positiveMeanTimeOutsideSec": 456.34328358208955,
+      "positiveEvents": 67,
+      "positiveRecords": 201,
+      "positivePassRate": 0,
+      "negativeRecords": 57,
+      "restraintRate": 0.631578947368421
+    },
+    {
+      "armId": "full-rules-closed-loop",
+      "records": 258,
+      "replayMisses": 0,
+      "positiveFailureModes": {
+        "late": 69,
+        "never-entered": 72,
+        "unpermitted-action": 21
+      },
+      "positiveDecisionAcc": 0.29850746268656714,
+      "positiveMeanIae": 2509.9433798507457,
+      "positiveMeanTimeOutsideSec": 343.97014925373134,
+      "positiveEvents": 67,
+      "positiveRecords": 201,
+      "positivePassRate": 0.29850746268656714,
+      "negativeRecords": 57,
+      "restraintRate": 0.631578947368421
+    }
+  ]
+}
