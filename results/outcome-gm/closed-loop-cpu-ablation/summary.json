@@ -1,6 +1,8 @@
 {
   "protocol": "closed-loop-cpu-ablation-v1",
-  "generatedAt": "2026-10-29T13:36:48.600Z",
+  "variant": "main",
+  "setpointPolicy": "legacy-v1",
+  "generatedAt": "2026-10-30T06:57:14.889Z",
   "seeds": [
     11,
     22,

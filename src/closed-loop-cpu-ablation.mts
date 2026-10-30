@@ -22,7 +22,7 @@ import { fileURLToPath } from 'node:url';
 import { configureLogger, LoggerLevel } from '@active-collaboration/shared';
 import { LLMClient, LLMCache } from '@active-collaboration/llm-integration';
 import { runAgentStackArm, type AgentStackMode } from './agent-arm.js';
-import { getResultsBaseDir } from '../result-persistence.js';
+import { getResultsBaseDir } from './result-persistence.js';
 import { loadFrozenOutcomeQueue, FROZEN_OUTCOME_GATE_REPORT } from './frozen-queue.js';
 import { CLOSED_LOOP_EXECUTOR_VERSION } from './closed-loop-executor.js';
 import { OPERATIONAL_SETPOINT_POLICY } from './envelope.js';
@@ -30,24 +30,38 @@ import { OPERATIONAL_SETPOINT_POLICY } from './envelope.js';
 configureLogger({ level: LoggerLevel.ERROR });
 
 const SEEDS = [11, 22, 33];
-// OUTCOME_ABLATION_VARIANT selects the run: 'main' (legacy setpoints, LLM VCR
-// arms included) or 'setpoint-v2' (calibrated setpoints; full-rules only —
-// recalibrated operational targets change LLM prompts, so VCR replay would
-// miss and live LLM needs GPU).
+// OUTCOME_ABLATION_VARIANT selects the run:
+//   'main'        — legacy setpoints, LLM arms via VCR replay (GPU-free)
+//   'setpoint-v2' — calibrated setpoints; full-rules only via VCR-free CPU
+// OUTCOME_ABLATION_LIVE=1 (+ OUTCOME_ABLATION_VARIANT=setpoint-v2) switches to
+// the LIVE GPU expansion: the four LLM arms under calibrated setpoints —
+// recalibrated operational targets change the event payload (prompt), so the
+// round-2 cache cannot serve them and live calls are required.
 const VARIANT = process.env.OUTCOME_ABLATION_VARIANT === 'setpoint-v2' ? 'setpoint-v2' : 'main';
+const LIVE = process.env.OUTCOME_ABLATION_LIVE === '1';
+const LLM_BASE_URL = process.env.LLM_BASE_URL ?? 'http://127.0.0.1:8121/v1';
 const BASE = join(
   getResultsBaseDir(), 'outcome-gm',
-  VARIANT === 'setpoint-v2' ? 'closed-loop-setpoint-ablation' : 'closed-loop-cpu-ablation',
+  VARIANT === 'setpoint-v2'
+    ? (LIVE ? 'closed-loop-setpoint-ablation-llm' : 'closed-loop-setpoint-ablation')
+    : 'closed-loop-cpu-ablation',
 );
 const CACHE_DB = join(getResultsBaseDir(), 'outcome-gm', 'llm-round2', 'llm-response-cache.db');
 const RECORDS = join(BASE, 'records.jsonl');
 const LLM_MODEL = 'Qwen/Qwen2.5-7B-Instruct';
 const ARMS: Array<{ armId: string; mode: AgentStackMode | 'full-rules'; loop: 'open-loop' | 'closed-loop' }> =
   VARIANT === 'setpoint-v2'
-    ? [
-      { armId: 'full-rules-open-loop', mode: 'full-rules', loop: 'open-loop' },
-      { armId: 'full-rules-closed-loop', mode: 'full-rules', loop: 'closed-loop' },
-    ]
+    ? (LIVE
+      ? [
+        { armId: 'distributed-llm-open-loop', mode: 'distributed-llm', loop: 'open-loop' },
+        { armId: 'distributed-llm-closed-loop', mode: 'distributed-llm', loop: 'closed-loop' },
+        { armId: 'centralized-llm-open-loop', mode: 'centralized-llm', loop: 'open-loop' },
+        { armId: 'centralized-llm-closed-loop', mode: 'centralized-llm', loop: 'closed-loop' },
+      ]
+      : [
+        { armId: 'full-rules-open-loop', mode: 'full-rules', loop: 'open-loop' },
+        { armId: 'full-rules-closed-loop', mode: 'full-rules', loop: 'closed-loop' },
+      ])
     : [
       { armId: 'full-rules-open-loop', mode: 'full-rules', loop: 'open-loop' },
       { armId: 'full-rules-closed-loop', mode: 'full-rules', loop: 'closed-loop' },
@@ -75,6 +89,13 @@ if (existsSync(RECORDS)) {
 }
 
 function makeClient(): LLMClient | undefined {
+  if (LIVE) {
+    const url = new URL(LLM_BASE_URL);
+    if (!['127.0.0.1', 'localhost', '::1'].includes(url.hostname)) {
+      throw new Error('LLM endpoint must be loopback');
+    }
+    return new LLMClient('openai-compatible', { baseURL: LLM_BASE_URL, model: LLM_MODEL });
+  }
   if (VARIANT === 'setpoint-v2') return undefined; // full-rules only; no LLM calls
   if (!existsSync(CACHE_DB)) throw new Error(`VCR cache missing: ${CACHE_DB}`);
   return new LLMClient('openai-compatible', {

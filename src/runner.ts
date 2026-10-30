@@ -13,10 +13,10 @@
  */
 
 import { createHash } from 'node:crypto';
-import { SCENARIOS } from '../scenario-definitions.js';
+import { SCENARIOS } from './scenario-definitions.js';
 import { findScenario } from './scenario-registry.js';
-import { resolveEventParameter } from '../paper-experiment-runner.js';
-import type { TestEventDef } from '../types.js';
+import { resolveEventParameter } from './paper-experiment-runner.js';
+import type { TestEventDef } from './types.js';
 import { deriveEnvelopeSpec, ENVELOPE_SPEC_VERSION } from './envelope.js';
 import { evaluateOutcome } from './evaluate.js';
 import { POLICY_FACTORIES } from './policies.js';

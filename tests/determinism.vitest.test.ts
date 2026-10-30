@@ -10,11 +10,11 @@
 
 import { describe, it, expect, beforeAll } from 'vitest';
 import { configureLogger, LoggerLevel } from '@active-collaboration/shared';
-import { runOutcomeFixture } from './runner.js';
-import { OutcomeWorld } from './world.js';
-import { SCENARIOS } from '../scenario-definitions.js';
-import { BASELINE_PARAMS as RUNNER_BASELINE, NON_PHYSICAL_PARAMETERS as RUNNER_NON_PHYSICAL } from '../paper-experiment-runner.js';
-import { BASELINE_PARAMS, NON_PHYSICAL_PARAMETERS } from './calibration.js';
+import { runOutcomeFixture } from '../src/runner.js';
+import { OutcomeWorld } from '../src/world.js';
+import { SCENARIOS } from '../src/scenario-definitions.js';
+import { BASELINE_PARAMS as RUNNER_BASELINE, NON_PHYSICAL_PARAMETERS as RUNNER_NON_PHYSICAL } from '../src/paper-experiment-runner.js';
+import { BASELINE_PARAMS, NON_PHYSICAL_PARAMETERS } from '../src/calibration.js';
 
 beforeAll(() => {
   configureLogger({ level: LoggerLevel.ERROR });

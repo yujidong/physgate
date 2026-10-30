@@ -12,8 +12,8 @@
  * table only) so it cannot be tuned after seeing model results (WP-B1 rule).
  */
 
-import type { TestEventDef } from '../types.js';
-import { resolveEventParameter } from '../paper-experiment-runner.js';
+import type { TestEventDef } from './types.js';
+import { resolveEventParameter } from './paper-experiment-runner.js';
 import {
   BASELINE_PARAMS,
   CALIBRATION_REF,

@@ -16,7 +16,7 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { getResultsBaseDir } from '../result-persistence.js';
+import { getResultsBaseDir } from '../src/result-persistence.js';
 
 const RERUN = join(getResultsBaseDir(), 'outcome-gm', 'boptest-fmu', 'rerun', 'fmu-rerun.json');
 

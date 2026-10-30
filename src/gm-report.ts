@@ -17,9 +17,9 @@
 
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { SCENARIOS } from '../scenario-definitions.js';
-import { resolveEventParameter } from '../paper-experiment-runner.js';
-import { getResultsBaseDir } from '../result-persistence.js';
+import { SCENARIOS } from './scenario-definitions.js';
+import { resolveEventParameter } from './paper-experiment-runner.js';
+import { getResultsBaseDir } from './result-persistence.js';
 import { deriveEnvelopeSpec, ENVELOPE_SPEC_VERSION } from './envelope.js';
 import { runOutcomeFixture } from './runner.js';
 import { hasWrongWayChannel } from './policies.js';

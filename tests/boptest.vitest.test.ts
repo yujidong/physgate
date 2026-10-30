@@ -24,7 +24,7 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { configureLogger, LoggerLevel } from '@active-collaboration/shared';
-import { getResultsBaseDir } from '../result-persistence.js';
+import { getResultsBaseDir } from '../src/result-persistence.js';
 
 configureLogger({ level: LoggerLevel.ERROR });
 

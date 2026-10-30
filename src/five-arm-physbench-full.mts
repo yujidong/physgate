@@ -18,23 +18,35 @@
  * repeated seeds must produce identical verdicts (asserted in the vitest pin).
  */
 
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { configureLogger, LoggerLevel } from '@active-collaboration/shared';
+import { LLMClient } from '@active-collaboration/llm-integration';
 import { runOutcomeFixture } from './runner.js';
 import { runAgentStackArm } from './agent-arm.js';
-import { getResultsBaseDir } from '../result-persistence.js';
+import { getResultsBaseDir } from './result-persistence.js';
 import type { OutcomeRecord } from './schema.js';
 
 configureLogger({ level: LoggerLevel.ERROR });
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const GM_REPORT = join(getResultsBaseDir(), 'outcome-gm', 'physbench-gm', 'physbench-gm-report.json');
-const OUT_DIR = join(getResultsBaseDir(), 'outcome-gm', 'five-arm-physbench-full');
+// OUTCOME_FULL_LLM=1 switches to the LIVE LLM expansion run (GPU): the two
+// LLM arms on the FULL admitted cohort. Output goes to a separate artifact
+// dir so the frozen CPU-arm results are never mixed with live-LLM runs.
+const LLM_EXPANSION = process.env.OUTCOME_FULL_LLM === '1';
+const LLM_BASE_URL = process.env.LLM_BASE_URL ?? 'http://127.0.0.1:8121/v1';
+const LLM_MODEL = process.env.LLM_MODEL ?? 'Qwen/Qwen2.5-7B-Instruct';
+const OUT_DIR = join(
+  getResultsBaseDir(), 'outcome-gm',
+  LLM_EXPANSION ? 'five-arm-physbench-full-llm' : 'five-arm-physbench-full',
+);
 const SEEDS = [11, 22, 33] as const;
-const ARMS = ['no-op', 'perfect-info-greedy', 'full-rules'] as const;
-type ArmId = (typeof ARMS)[number];
+const ARMS = (LLM_EXPANSION
+  ? ['distributed-llm', 'centralized-llm']
+  : ['no-op', 'perfect-info-greedy', 'full-rules']) as readonly ArmId[];
+type ArmId = 'no-op' | 'perfect-info-greedy' | 'full-rules' | 'distributed-llm' | 'centralized-llm';
 
 interface GmEventRow {
   scenarioId: string;
@@ -96,6 +108,7 @@ function decisionCorrect(record: OutcomeRecord): boolean | null {
   return corrective;
 }
 
+let liveClient: LLMClient | undefined;
 async function runArm(arm: ArmId, ev: GmEventRow, seed: number): Promise<OutcomeRecord> {
   if (arm === 'full-rules') {
     return runAgentStackArm({
@@ -104,6 +117,17 @@ async function runArm(arm: ArmId, ev: GmEventRow, seed: number): Promise<Outcome
       seed,
       mode: 'full-rules',
       executionLoop: 'open-loop',
+    });
+  }
+  if (arm === 'distributed-llm' || arm === 'centralized-llm') {
+    if (!liveClient) throw new Error(`${arm} requires OUTCOME_FULL_LLM=1 and a live endpoint`);
+    return runAgentStackArm({
+      scenarioId: ev.scenarioId,
+      eventId: ev.eventId,
+      seed,
+      mode: arm,
+      executionLoop: 'open-loop',
+      llmClient: liveClient,
     });
   }
   return runOutcomeFixture({
@@ -188,25 +212,45 @@ function aggregate(rows: ReturnType<typeof compact>[]) {
 async function main() {
   const queue = loadAdmittedQueue();
   mkdirSync(OUT_DIR, { recursive: true });
+  if (LLM_EXPANSION) {
+    const url = new URL(LLM_BASE_URL);
+    if (!['127.0.0.1', 'localhost', '::1'].includes(url.hostname)) {
+      throw new Error('LLM endpoint must be loopback');
+    }
+    liveClient = new LLMClient('openai-compatible', { baseURL: LLM_BASE_URL, model: LLM_MODEL });
+    console.log(`live LLM expansion: ${LLM_MODEL} @ ${LLM_BASE_URL}`);
+  }
   const startedAt = new Date().toISOString();
   const allRows: ReturnType<typeof compact>[] = [];
   const armRows = new Map<ArmId, ReturnType<typeof compact>[]>();
 
+  // resumable: skip records already on disk for this arm
+  const existing = new Map<ArmId, ReturnType<typeof compact>[]>();
   for (const arm of ARMS) {
-    const rows: ReturnType<typeof compact>[] = [];
-    let done = 0;
+    const p = join(OUT_DIR, `records-${arm}.json`);
+    existing.set(arm, existsSync(p) ? JSON.parse(readFileSync(p, 'utf8')) : []);
+  }
+
+  for (const arm of ARMS) {
+    const rows = existing.get(arm)!;
+    const doneKey = new Set(rows.map(r => `${r.scenarioId}|${r.eventId}|${r.seed}`));
+    let fresh = 0;
     for (const ev of queue) {
       for (const seed of SEEDS) {
+        if (doneKey.has(`${ev.scenarioId}|${ev.eventId}|${seed}`)) continue;
         const record = await runArm(arm, ev, seed);
         rows.push(compact(record, ev, arm));
-        done++;
-        if (done % 100 === 0) console.log(`  [${arm}] ${done}/${queue.length * SEEDS.length}`);
+        fresh++;
+        if (fresh % 50 === 0) {
+          writeFileSync(join(OUT_DIR, `records-${arm}.json`), JSON.stringify(rows, null, 1));
+          console.log(`  [${arm}] ${rows.length}/${queue.length * SEEDS.length}`);
+        }
       }
     }
     armRows.set(arm, rows);
     allRows.push(...rows);
     writeFileSync(join(OUT_DIR, `records-${arm}.json`), JSON.stringify(rows, null, 1));
-    console.log(`[${arm}] wrote ${rows.length} records`);
+    console.log(`[${arm}] wrote ${rows.length} records (${fresh} fresh)`);
   }
 
   const summary = {
@@ -216,6 +260,7 @@ async function main() {
     gateReport: 'physbench-gm/physbench-gm-report.json',
     seeds: [...SEEDS],
     arms: [...ARMS],
+    llm: LLM_EXPANSION ? { model: LLM_MODEL, endpoint: LLM_BASE_URL, temperature: 0, maxTokens: 1024 } : null,
     armSummary: Object.fromEntries(ARMS.map(a => [a, aggregate(armRows.get(a)!)])),
   };
   writeFileSync(join(OUT_DIR, 'summary.json'), JSON.stringify(summary, null, 2));

@@ -8,8 +8,8 @@
 
 import { describe, it, expect, beforeAll } from 'vitest';
 import { configureLogger, LoggerLevel } from '@active-collaboration/shared';
-import { runOutcomeFixture } from './runner.js';
-import { MANUAL_EXPECTATIONS } from './expectations.js';
+import { runOutcomeFixture } from '../src/runner.js';
+import { MANUAL_EXPECTATIONS } from '../src/expectations.js';
 
 beforeAll(() => {
   configureLogger({ level: LoggerLevel.ERROR });

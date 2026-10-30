@@ -12,9 +12,9 @@ import { describe, it, expect } from 'vitest';
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { configureLogger, LoggerLevel } from '@active-collaboration/shared';
-import { loadFrozenOutcomeQueue } from './frozen-queue.js';
-import { runOutcomeFixture } from './runner.js';
-import { passAtK } from './stats.js';
+import { loadFrozenOutcomeQueue } from '../src/frozen-queue.js';
+import { runOutcomeFixture } from '../src/runner.js';
+import { passAtK } from '../src/stats.js';
 
 configureLogger({ level: LoggerLevel.ERROR });
 

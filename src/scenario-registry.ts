@@ -6,9 +6,9 @@
  * calls are cheap and deterministic.
  */
 
-import { SCENARIOS } from '../scenario-definitions.js';
+import { SCENARIOS } from './scenario-definitions.js';
 import { generatePhysBenchScenarios } from './generate-physbench-scenarios.js';
-import type { ScenarioDefinition } from '../types.js';
+import type { ScenarioDefinition } from './types.js';
 
 let cachedAll: Map<string, ScenarioDefinition> | null = null;
 

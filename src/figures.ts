@@ -24,7 +24,7 @@
 
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { getResultsBaseDir } from '../result-persistence.js';
+import { getResultsBaseDir } from './result-persistence.js';
 import { buildTierInventory, FROZEN_SCENARIO_IDS } from './tier-inventory.js';
 import { FROZEN_OUTCOME_COUNTS, FROZEN_OUTCOME_EXCLUDED_EVENT_IDS, frozenOutcomeEventKey, loadFrozenOutcomeQueue, FROZEN_OUTCOME_GATE_REPORT } from './frozen-queue.js';
 

@@ -15,7 +15,7 @@
 import { describe, it, expect } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { getResultsBaseDir } from '../result-persistence.js';
+import { getResultsBaseDir } from '../src/result-persistence.js';
 
 const SUMMARY = join(getResultsBaseDir(), 'outcome-gm', 'five-arm-physbench-full', 'summary.json');
 

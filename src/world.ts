@@ -22,7 +22,7 @@
  */
 
 import { PhysicalEnvironment, TimeManager } from '@active-collaboration/simulation';
-import type { ScenarioDefinition } from '../types.js';
+import type { ScenarioDefinition } from './types.js';
 import { BASELINE_PARAMS, SAFETY_TRACKED_PARAMETERS } from './calibration.js';
 import type { ActuationRecord } from './schema.js';
 import type { ActuationEffect, ActuationModel } from './calibration.js';

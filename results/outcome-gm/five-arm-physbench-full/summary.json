@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-29T13:07:03.282Z",
-  "startedAt": "2026-10-29T13:04:15.811Z",
+  "generatedAt": "2026-10-30T06:57:25.639Z",
+  "startedAt": "2026-10-30T06:57:25.618Z",
   "cohort": "physbench-admitted (185 positive + 21 negative)",
   "gateReport": "physbench-gm/physbench-gm-report.json",
   "seeds": [
@@ -13,6 +13,7 @@
     "perfect-info-greedy",
     "full-rules"
   ],
+  "llm": null,
   "armSummary": {
     "no-op": {
       "records": 618,

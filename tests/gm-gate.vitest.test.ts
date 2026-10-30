@@ -15,11 +15,11 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { configureLogger, LoggerLevel } from '@active-collaboration/shared';
-import { SCENARIOS } from '../scenario-definitions.js';
-import { generatePhysBenchScenarios } from './generate-physbench-scenarios.js';
-import { deriveEnvelopeSpec } from './envelope.js';
-import { resolveEventParameter } from '../paper-experiment-runner.js';
-import { runOutcomeFixture } from './runner.js';
+import { SCENARIOS } from '../src/scenario-definitions.js';
+import { generatePhysBenchScenarios } from '../src/generate-physbench-scenarios.js';
+import { deriveEnvelopeSpec } from '../src/envelope.js';
+import { resolveEventParameter } from '../src/paper-experiment-runner.js';
+import { runOutcomeFixture } from '../src/runner.js';
 import type { ScenarioDefinition } from '../types.js';
 
 configureLogger({ level: LoggerLevel.ERROR });

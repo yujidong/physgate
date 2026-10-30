@@ -1,0 +1,96 @@
+{
+  "source": "SpatialField with parameterPhysics (FEAT-03)",
+  "date": "2026-10-30T07:07:46.051Z",
+  "results": [
+    {
+      "family": "co2",
+      "mode": "natural",
+      "injected": 1200,
+      "recovered": true,
+      "recoveryTimeSec": 148,
+      "finalValue": 999.98,
+      "inEnvelope": true
+    },
+    {
+      "family": "co2",
+      "mode": "actuated",
+      "injected": 1200,
+      "recovered": true,
+      "recoveryTimeSec": 60,
+      "finalValue": 420.48,
+      "inEnvelope": true
+    },
+    {
+      "family": "voc",
+      "mode": "natural",
+      "injected": 500,
+      "recovered": true,
+      "recoveryTimeSec": 305,
+      "finalValue": 199.98,
+      "inEnvelope": true
+    },
+    {
+      "family": "voc",
+      "mode": "actuated",
+      "injected": 500,
+      "recovered": true,
+      "recoveryTimeSec": 19,
+      "finalValue": 0,
+      "inEnvelope": true
+    },
+    {
+      "family": "o2",
+      "mode": "natural",
+      "injected": 17,
+      "recovered": true,
+      "recoveryTimeSec": 1024,
+      "finalValue": 19.5,
+      "inEnvelope": true
+    },
+    {
+      "family": "o2",
+      "mode": "actuated",
+      "injected": 17,
+      "recovered": true,
+      "recoveryTimeSec": 5,
+      "finalValue": 20.86,
+      "inEnvelope": true
+    },
+    {
+      "family": "light",
+      "mode": "natural",
+      "injected": 50,
+      "recovered": true,
+      "recoveryTimeSec": 1,
+      "finalValue": 200,
+      "inEnvelope": true
+    },
+    {
+      "family": "light",
+      "mode": "actuated",
+      "injected": 50,
+      "recovered": true,
+      "recoveryTimeSec": 1,
+      "finalValue": 350,
+      "inEnvelope": true
+    },
+    {
+      "family": "noise",
+      "mode": "natural",
+      "injected": 85,
+      "recovered": true,
+      "recoveryTimeSec": 3,
+      "finalValue": 60.6,
+      "inEnvelope": true
+    },
+    {
+      "family": "noise",
+      "mode": "actuated",
+      "injected": 85,
+      "recovered": true,
+      "recoveryTimeSec": 2,
+      "finalValue": 35,
+      "inEnvelope": true
+    }
+  ]
+}

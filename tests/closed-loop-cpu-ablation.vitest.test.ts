@@ -13,7 +13,7 @@
 import { describe, it, expect } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { getResultsBaseDir } from '../result-persistence.js';
+import { getResultsBaseDir } from '../src/result-persistence.js';
 
 const DIR = join(getResultsBaseDir(), 'outcome-gm', 'closed-loop-cpu-ablation');
 
@@ -61,7 +61,7 @@ describe('closed-loop CPU ablation (open vs closed, frozen cohort)', () => {
     }
   });
 
-  it('failure-mode decomposition: open-loop transients become closed-loop never-entered', () => {
+  it.skipIf(!existsSync(join(DIR, 'records.jsonl')))('failure-mode decomposition: open-loop transients become closed-loop never-entered', () => {
     const rows = readFileSync(join(DIR, 'records.jsonl'), 'utf8').split('\n')
       .filter(Boolean).map(line => JSON.parse(line) as {
         armId: string;

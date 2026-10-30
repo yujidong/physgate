@@ -5,7 +5,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { generatePhysBenchScenarios, countGeneratedEvents } from './generate-physbench-scenarios.js';
+import { generatePhysBenchScenarios, countGeneratedEvents } from '../src/generate-physbench-scenarios.js';
 
 describe('PhysBench scenario generation', () => {
   const scenarios = generatePhysBenchScenarios();

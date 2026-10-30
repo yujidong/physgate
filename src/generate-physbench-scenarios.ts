@@ -12,7 +12,7 @@
  * Output: ScenarioDefinition objects compatible with the existing outcome layer.
  */
 
-import type { ScenarioDefinition, ZoneDef, DeviceDef, TestEventDef, AgentDef } from '../types.js';
+import type { ScenarioDefinition, ZoneDef, DeviceDef, TestEventDef, AgentDef } from './types.js';
 import { PARAMETER_FAMILIES, SCENARIO_TEMPLATES } from './physbench-manifest.js';
 import { NEW_FAMILY_CALIBRATION, NEW_FAMILY_BASELINES } from './new-parameter-families.js';
 
