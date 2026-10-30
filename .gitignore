@@ -2,3 +2,7 @@ node_modules/
 dist/
 *.tsbuildinfo
 .vitest/
+test-run.log
+node_modules/
+physbench-results/
+*.log
