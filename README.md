@@ -1,8 +1,8 @@
-# PhysBench
+# PhysGate
 
 **A physically-grounded evaluation framework for cyber-physical automation systems with intelligent agents.**
 
-PhysBench measures whether embodied agents in CPS actually *achieve physical outcomes* — reach the safe envelope by a deadline and hold it — rather than whether they select correct actions. It pairs Signal-Temporal-Logic-style reach-and-hold verdicts with counterfactual no-op admission gating and restraint scoring on negative events.
+PhysGate measures whether embodied agents in CPS actually *achieve physical outcomes* — reach the safe envelope by a deadline and hold it — rather than whether they select correct actions. It pairs Signal-Temporal-Logic-style reach-and-hold verdicts with counterfactual no-op admission gating and restraint scoring on negative events.
 
 ## Key numbers (v0.2.1, 2026-10-29)
 
