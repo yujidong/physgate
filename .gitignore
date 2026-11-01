@@ -6,3 +6,4 @@ test-run.log
 node_modules/
 physbench-results/
 *.log
+.mimosa/
