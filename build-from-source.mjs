@@ -25,7 +25,7 @@ import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const REPO = dirname(fileURLToPath(import.meta.url));
-const FRAMEWORK = resolve(process.argv[2] ?? join(REPO, '..', 'embodied-agent-framework'));
+const FRAMEWORK = resolve(process.argv[2] ?? join(REPO, '..', '..', 'embodied-agent-framework'));
 const INFRA = join(FRAMEWORK, 'packages', 'core', 'tests', 'experiments', 'infrastructure');
 const OUTCOME = join(INFRA, 'outcome');
 const CORE_SRC = join(FRAMEWORK, 'packages', 'core', 'src');

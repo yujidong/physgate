@@ -184,7 +184,7 @@ function summarize(rows: Stored[]) {
   };
 }
 
-async function main() {
+export async function runAblation() {
   mkdirSync(BASE, { recursive: true });
   const started = Date.now();
   for (const { armId, mode, loop } of ARMS) {
@@ -229,6 +229,6 @@ async function main() {
 }
 
 const invoked = process.argv[1] ? resolve(process.argv[1]) : '';
-if (invoked === resolve(fileURLToPath(import.meta.url))) {
-  main().catch(e => { console.error(e); process.exit(1); });
+if (process.argv[1]?.endsWith('closed-loop-cpu-ablation.mts')) {
+  runAblation().catch(e => { console.error(e); process.exit(1); });
 }

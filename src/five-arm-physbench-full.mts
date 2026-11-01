@@ -209,7 +209,7 @@ function aggregate(rows: ReturnType<typeof compact>[]) {
   };
 }
 
-async function main() {
+export async function runFullCohortArms() {
   const queue = loadAdmittedQueue();
   mkdirSync(OUT_DIR, { recursive: true });
   if (LLM_EXPANSION) {
@@ -274,6 +274,6 @@ async function main() {
 }
 
 const invoked = process.argv[1] ? resolve(process.argv[1]) : '';
-if (invoked === fileURLToPath(import.meta.url)) {
-  main().catch(e => { console.error(e); process.exit(1); });
+if (process.argv[1]?.endsWith('five-arm-physbench-full.mts')) {
+  runFullCohortArms().catch(e => { console.error(e); process.exit(1); });
 }

@@ -1,0 +1,28 @@
+{
+  "name": "physgate",
+  "version": "0.2.1",
+  "description": "PhysGate: A Physically-Grounded Benchmark for Embodied Multi-Agent Evaluation",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "vitest run --config vitest.config.ts",
+    "eval": "vitest run --config vitest.config.ts tests/eval.vitest.test.ts",
+    "gate": "vitest run --config vitest.config.ts tests/gm-gate.vitest.test.ts"
+  },
+  "devDependencies": {
+    "@active-collaboration/simulation": "file:../embodied-agent-framework/packages/simulation",
+    "@active-collaboration/shared": "file:../embodied-agent-framework/packages/shared",
+    "ajv": "^8.12.0",
+    "vitest": "^1.6.1",
+    "typescript": "^5.3.3"
+  },
+  "license": "MIT",
+  "keywords": [
+    "benchmark",
+    "embodied-agents",
+    "physical-outcome",
+    "multi-agent",
+    "evaluation",
+    "cyber-physical-systems"
+  ]
+}

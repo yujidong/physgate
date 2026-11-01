@@ -30,7 +30,7 @@ PY=python; command -v python >/dev/null 2>&1 || PY=python3
 cat > "$OUTDIR/criterion.json" <<'EOF'
 {
   "preregisteredAt": "2026-10-29 (before rerun)",
-  "revision": "v2 (2026-10-29, same day): added terminal-sample condition to match evaluate.ts Definition 4 exactly. Motivation: the greedy arm's first execution leaked a persistent BOPTEST override (heat never released; terminal state 32.1 C outside the band) which enter+hold alone scored as PASS — the terminal condition is what catches it. Enter/hold thresholds unchanged from v1.",
+  "revision": "v2 (2026-10-29, same day): added terminal-sample condition to match evaluate.ts Definition 3 (temporal correctness) exactly. Motivation: the greedy arm's first execution leaked a persistent BOPTEST override (heat never released; terminal state 32.1 C outside the band) which enter+hold alone scored as PASS — the terminal condition is what catches it. Enter/hold thresholds unchanged from v1.",
   "envelopeC": [21.0, 24.0],
   "deadlineSteps": 100,
   "holdSteps": 10,
